@@ -4,12 +4,12 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
 
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -54,21 +54,21 @@ public abstract class BasePage implements IBasePage {
 
 	@Override
 	public void moveElement(By source, By target) {
-		WebElement elSource = this.find(source);
-		WebElement elDest = this.find(target);
+		MobileElement elSource = this.find(source);
+		MobileElement elDest = this.find(target);
 		TouchAction action = new TouchAction(driver);
 //		action.longPress(elSource).moveTo(elDest).release().perform();    //Commented due to version mismatch
 	}
 
 	@Override
 	public String getAttribute(By by, String attribute) {
-		WebElement element = find(by);
+		MobileElement element = find(by);
 		return element.getAttribute(attribute);
 	}
 
 	@Override
 	public String getText(By by) {
-		WebElement element = find(by);
+		MobileElement element = find(by);
 		return element.getText();
 	}
 
@@ -83,28 +83,28 @@ public abstract class BasePage implements IBasePage {
 	}
 
 	@Override
-	public WebElement click(By by) {
+	public MobileElement click(By by) {
 		waitForElementPresent(by);
-		WebElement element = find(by);
+		MobileElement element = find(by);
 		element.click();
 		return element;
 	}
 
 	@Override
-	public WebElement click(WebElement element) {
+	public MobileElement click(MobileElement element) {
 		element.click();
 		return element;
 	}
 
 	@Override
-	public WebElement clear(By by) {
-		WebElement element = find(by);
+	public MobileElement clear(By by) {
+		MobileElement element = find(by);
 		element.clear();
 		return element;
 	}
 
 	@Override
-	public WebElement setText(By by, String text) {
+	public MobileElement setText(By by, String text) {
 		MobileElement element = find(by);
 		element.clear();
 		element.sendKeys(text);
@@ -112,8 +112,8 @@ public abstract class BasePage implements IBasePage {
 	}
 
 	@Override
-	public WebElement appendText(By by, String text) {
-		WebElement element = find(by);
+	public MobileElement appendText(By by, String text) {
+		MobileElement element = find(by);
 		element.sendKeys(text);
 		return element;
 	}

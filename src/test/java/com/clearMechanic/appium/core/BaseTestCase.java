@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory;
 import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 
-import com.clearMechanic.pages.AppSetupPage;
 import com.clearMechanic.util.FileReader;
 
 import io.appium.java_client.AppiumDriver;
@@ -35,8 +34,6 @@ public class BaseTestCase {
 	protected int timeOut = 20;
 	private int port = 0;
 	private final String udid;
-
-	public static AppSetupPage appSetupPage;
 
 	public BaseTestCase(String udid, int port) {
 		this.udid = udid;
