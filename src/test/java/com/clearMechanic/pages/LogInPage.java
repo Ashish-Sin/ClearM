@@ -11,7 +11,7 @@ import static com.clearMechanic.locators.Login.BackButton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.clearMechanic.appium.core.BasePage;
+import com.clearMechanic.pages.BasePage;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -22,7 +22,7 @@ public class LogInPage extends BasePage {
 		super(driver);
 	}
 	
-	public void clickOnLogInButton() {
+	private void clickOnLogInButton() {
 		waitForElementClickable(LoginButton.toBy());
 		click(LoginButton.toBy());
 		logger.debug("Click on 'Log In' Button");
@@ -43,7 +43,7 @@ public class LogInPage extends BasePage {
 		
 	}
 	
-	public void naviagateTo() {
+	private void naviagateTo() {
 		waitForElementClickable(Login.toBy());
 		click(Login.toBy());
 		logger.debug("Click on 'Tap Screen To Log In' link");
@@ -54,6 +54,7 @@ public class LogInPage extends BasePage {
 		waitForElementClickable(DealerOrShopName.toBy());
 		setText(DealerOrShopName.toBy(), "Demo Repair Shop");
 		logger.debug("Enter Dealer Or Shop name");
+		waitForElementClickable(Email.toBy());
 		setText(Email.toBy(), "test113@test.com");
 		logger.debug("Enter User name");
 		setText(Password.toBy(), "P@ssw0rd");

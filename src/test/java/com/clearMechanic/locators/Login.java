@@ -6,7 +6,8 @@ public enum Login implements ILocator{
 	
 	Login(By.xpath("//*[@text = 'Tap Screen to Log In']")),
 	DealerOrShopName(By.xpath("//*[@text = 'Dealer or Shop Name']")),
-	Email(By.xpath("//*[@text = 'E-mail']")),
+	Email(By.xpath("//*[contains(@resource-id, 'inputEmail')]")),
+//	Email(By.xpath("//*[contains(@resource-id, 'com.clearcheck.cmbeta:Controls_CmRowTextInput_TextCheckmark/txtTextInput')]")),
 	Password(By.xpath("//*[contains(@resource-id, 'inputPassword')]")),
 	LoginButton(By.xpath("//*[contains(@resource-id, 'btnLogIn')]")),
 	BackButton(By.xpath("//*[contains(@resource-id, 'btnLeftButton') and text()='Back']")),

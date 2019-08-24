@@ -91,9 +91,9 @@ public class BaseTestCase {
 		capabilities.setCapability("platformName", "Android");
 		capabilities.setCapability("deviceName", "Appium");
 		capabilities.setCapability("platformVersion", "9");
-//		capabilities.setCapability("appPackage", "com.clearcheck.cmbeta");
-//		capabilities.setCapability("appActivity", "md5e047583c9ad193c8c022c6c9ad74d95b.HostActivity");
-		capabilities.setCapability("app", appPath);
+		capabilities.setCapability("appPackage", "com.clearcheck.cmbeta");
+		capabilities.setCapability("appActivity", "md5e047583c9ad193c8c022c6c9ad74d95b.HostActivity");
+//		capabilities.setCapability("app", appPath);
 		capabilities.setCapability("autoGrantPermissions", "true");
 		if (StringUtils.isNoneBlank(udid)) {
 			capabilities.setCapability("udid", udid);

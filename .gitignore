@@ -1,0 +1,4 @@
+/test-output/
+*.html
+*.xml
+*.class

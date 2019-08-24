@@ -6,7 +6,7 @@ import static com.clearMechanic.locators.AppSetup.OTPInputField;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-import com.clearMechanic.appium.core.BasePage;
+import com.clearMechanic.pages.BasePage;
 import com.clearMechanic.util.FileReader;
 
 public class AppSetupPage extends BasePage {

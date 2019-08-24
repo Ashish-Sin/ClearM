@@ -4,7 +4,7 @@ import static com.clearMechanic.locators.Home.MobileNumberInputField;
 import static com.clearMechanic.locators.Home.PrepaidRechargeRadioButton;
 import static com.clearMechanic.locators.Home.RechargeTab;
 
-import com.clearMechanic.appium.core.BasePage;
+import com.clearMechanic.pages.BasePage;
 import com.clearMechanic.util.FileReader;
 
 import io.appium.java_client.AppiumDriver;

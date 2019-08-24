@@ -1,4 +1,4 @@
-package com.clearMechanic.appium.core;
+package com.clearMechanic.pages;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -12,6 +12,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.clearMechanic.appium.core.IBasePage;
 
 public abstract class BasePage implements IBasePage {
 

@@ -11,7 +11,6 @@ import com.clearMechanic.pages.LogInPage;
 
 public class LoginIntoClearMechanic extends BaseTestCase {
 	
-	private HomePage homePage;
 	private LogInPage loginPage;
 
 	@Factory(dataProvider = "listDevices")
@@ -22,7 +21,6 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	@BeforeMethod
 	public void LaunchApp() throws Exception {
 		setUp();
-		homePage = new HomePage(driver);
 		loginPage = new LogInPage(driver);
 	}
 
@@ -34,7 +32,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 		Thread.sleep(5000);
 	}
 	
-	@AfterMethod
+//	@AfterMethod
 	public void quiteApp() throws Exception {
 		destropAppSession();
 	}
