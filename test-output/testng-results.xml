@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="75437" started-at="2019-08-23T11:13:01Z" finished-at="2019-08-23T11:14:16Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="75437" started-at="2019-08-23T11:13:01Z" finished-at="2019-08-23T11:14:16Z">
+      <class name="com.clearMechanic.testscripts.LoginIntoClearMechanic">
+        <test-method status="PASS" signature="LaunchApp()[pri:0, instance:com.clearMechanic.testscripts.LoginIntoClearMechanic@73846619]" name="LaunchApp" is-config="true" duration-ms="26638" started-at="2019-08-23T16:43:01Z" finished-at="2019-08-23T16:43:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LaunchApp -->
+        <test-method status="PASS" signature="testloginIntoApllication()[pri:0, instance:com.clearMechanic.testscripts.LoginIntoClearMechanic@73846619]" name="testloginIntoApllication" duration-ms="44737" started-at="2019-08-23T16:43:27Z" finished-at="2019-08-23T16:44:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testloginIntoApllication -->
+        <test-method status="PASS" signature="quiteApp()[pri:0, instance:com.clearMechanic.testscripts.LoginIntoClearMechanic@73846619]" name="quiteApp" is-config="true" duration-ms="4048" started-at="2019-08-23T16:44:12Z" finished-at="2019-08-23T16:44:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quiteApp -->
+      </class> <!-- com.clearMechanic.testscripts.LoginIntoClearMechanic -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

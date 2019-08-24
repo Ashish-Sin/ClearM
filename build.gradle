@@ -1,0 +1,45 @@
+apply plugin: 'java'
+defaultTasks 'clean', 'test'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'com.google.guava:guava:15.0'
+    testCompile 'org.testng:testng:6.8.7'
+    testCompile 'dom4j:dom4j:1.6.1'
+    testCompile 'org.seleniumhq.selenium:selenium-server:2.53.0'
+	testCompile 'org.uncommons:reportng:1.1.4'
+	testCompile ('org.uncommons:reportng:1.1.4'){
+		exclude group: "org.testng", module: "testng"
+	}
+    testCompile 'jaxen:jaxen:1.1.6'
+    testCompile 'io.appium:java-client:3.3.0'
+	testCompile "com.google.inject:guice:3.0"
+	testCompile 'org.apache.commons:commons-lang3:3.3.2'
+	testCompile 'org.slf4j:slf4j-api:1.7.5'
+	
+}
+
+
+String suiteName = project.property("suite")
+System.out.println( suiteName )
+
+test {
+	scanForTestClasses = false
+	useTestNG()
+	{
+		//ignoreFailures = true
+		suites 'src/test/resources/testngsuite/'+suiteName+'.xml'
+		
+		options {
+			useDefaultListeners = false
+			listeners << 'org.uncommons.reportng.HTMLReporter'
+			listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+		}
+		
+	}
+}
+
+

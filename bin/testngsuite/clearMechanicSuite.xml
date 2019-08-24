@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SampleSuite" verbose="5">
+
+	<listeners>
+		<listener class-name="org.testng.reporters.EmailableReporter" />
+		<listener class-name="org.testng.reporters.TestHTMLReporter" />
+	</listeners>
+
+		
+	<test name="Right-Panel" preserve-order="true">
+		<classes>			
+			<class name="com.clearMechanic.testscripts.CheckMobileCurrentBalance" />
+			<class name="com.clearMechanic.testscripts.DataRechargeUsingDebitCard" />
+			<class name="com.clearMechanic.testscripts.DataRechargeUsingMobileWallet" />
+		</classes>
+	</test>
+
+</suite>
