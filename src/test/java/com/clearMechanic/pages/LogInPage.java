@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.clearMechanic.pages.BasePage;
+import com.clearMechanic.util.FileReader;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -43,26 +44,26 @@ public class LogInPage extends BasePage {
 		
 	}
 	
-	private void naviagateTo() {
+	private void goTo() {
 		waitForElementClickable(Login.toBy());
 		click(Login.toBy());
 		logger.debug("Click on 'Tap Screen To Log In' link");
 
 	}
 	
-	public void enterDetails() {
+	public void enterDetails() throws Exception {
 		waitForElementClickable(DealerOrShopName.toBy());
-		setText(DealerOrShopName.toBy(), "Demo Repair Shop");
+		setText(DealerOrShopName.toBy(), FileReader.readData("DealerName"));
 		logger.debug("Enter Dealer Or Shop name");
 		waitForElementClickable(Email.toBy());
-		setText(Email.toBy(), "test113@test.com");
+		setText(Email.toBy(), FileReader.readData("Email"));
 		logger.debug("Enter User name");
-		setText(Password.toBy(), "P@ssw0rd");
+		setText(Password.toBy(), FileReader.readData("Password"));
 		logger.debug("Enter Password");
 	}
 	
-	public void logintoApp() {
-		naviagateTo();
+	public void logintoApp() throws Exception {
+		this.goTo();
 		enterDetails();
 		clickOnLogInButton();
 	}

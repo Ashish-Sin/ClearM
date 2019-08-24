@@ -5,21 +5,21 @@ import io.appium.java_client.MobileElement;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public interface IBasePage {
 
 	public void clickOn(By by);
 
-	WebElement find(By by);
+	MobileElement find(By by);
 
-	WebElement click(By by);
+	MobileElement click(By by);
+//	MobileElement click();
 
-	WebElement clear(By by);
+	MobileElement clear(By by);
 
-	WebElement setText(By by, String text);
+	MobileElement setText(By by, String text);
 
-	WebElement appendText(By by, String text);
+	MobileElement appendText(By by, String text);
 
 	boolean isElementPresent(String locator);
 
@@ -41,7 +41,7 @@ public interface IBasePage {
 
 	void hideKeyboard();
 
-	WebElement click(WebElement element);
+	MobileElement click(MobileElement element);
 
 	void waitForElementPresent(By by);
 

@@ -22,14 +22,13 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	public void LaunchApp() throws Exception {
 		setUp();
 		loginPage = new LogInPage(driver);
+		loginPage.logintoApp();
 	}
 
 	@Test
 	public void testloginIntoApllication() throws Exception {
 		
-		Thread.sleep(5000);
-		loginPage.logintoApp();
-		Thread.sleep(5000);
+		
 	}
 	
 //	@AfterMethod

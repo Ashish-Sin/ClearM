@@ -19,12 +19,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Reporter;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
-import com.clearMechanic.pages.AppSetupPage;
-import com.clearMechanic.pages.HomePage;
-import com.clearMechanic.pages.LogInPage;
 import com.clearMechanic.util.FileReader;
 
 import io.appium.java_client.AppiumDriver;
@@ -33,13 +29,11 @@ import io.appium.java_client.android.AndroidDriver;
 
 public class BaseTestCase {
 
-	protected AppiumDriver<MobileElement> driver;
+	public AppiumDriver<MobileElement> driver;
 	private static final Logger logger = LoggerFactory.getLogger(BaseTestCase.class);
 	protected int timeOut = 20;
 	private int port = 0;
 	private final String udid;
-
-	public static AppSetupPage appSetupPage;
 
 	public BaseTestCase(String udid, int port) {
 		this.udid = udid;
@@ -53,7 +47,6 @@ public class BaseTestCase {
 		String host = FileReader.readData("Host");
 		try {
 			driver = new AndroidDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"), getDesiredCapabilities(this.getAppAbsoultePath()));
-			appSetupPage = new AppSetupPage(driver);
 
 		} catch (Exception e) {
 			logger.debug("appium server not stated");

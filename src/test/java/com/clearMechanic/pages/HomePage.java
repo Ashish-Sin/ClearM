@@ -1,10 +1,7 @@
 package com.clearMechanic.pages;
 
 import static com.clearMechanic.locators.Home.MobileNumberInputField;
-import static com.clearMechanic.locators.Home.PrepaidRechargeRadioButton;
-import static com.clearMechanic.locators.Home.RechargeTab;
 
-import com.clearMechanic.pages.BasePage;
 import com.clearMechanic.util.FileReader;
 
 import io.appium.java_client.AppiumDriver;
@@ -16,21 +13,8 @@ public class HomePage extends BasePage {
 		super(driver);
 	}
 
-	public HomePage clickOnNavigation() {
-		waitForElementClickable(RechargeTab.toBy());
-		click(RechargeTab.toBy());
-		return this;
-	}
-	
-	public HomePage clickRechargeTab() {
-		waitForElementClickable(RechargeTab.toBy());
-		click(RechargeTab.toBy());
-		return this;
-	}
-
-	public HomePage selectPrepaidRadioButton() {
-		click(PrepaidRechargeRadioButton.toBy());
-		return this;
+	public void goTo() {
+		
 	}
 
 	public HomePage enterMobileNumberToRecharge() throws Exception {
