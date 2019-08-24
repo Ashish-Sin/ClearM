@@ -29,7 +29,6 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 		
 		Thread.sleep(5000);
 		loginPage.logintoApp();
-		Thread.sleep(5000);
 	}
 	
 //	@AfterMethod
