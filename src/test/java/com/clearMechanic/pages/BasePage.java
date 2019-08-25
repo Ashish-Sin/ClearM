@@ -14,8 +14,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.clearMechanic.appium.core.IBasePage;
+import com.clearMechanic.util.MobileClient;
 
-public abstract class BasePage implements IBasePage {
+public abstract class BasePage extends MobileClient implements IBasePage {
 
 	protected AppiumDriver<MobileElement> driver;
 	public int globalWaitTime = 10;
@@ -28,9 +29,9 @@ public abstract class BasePage implements IBasePage {
 		return driver;
 	}
 
-	public AndroidDriver<MobileElement> getAndroidDriver() {
-		return (AndroidDriver<MobileElement>) driver;
-	}
+//	public AndroidDriver<MobileElement> getAndroidDriver() {       // Need to move this to MobileClient
+//		return (AndroidDriver<MobileElement>) driver;
+//	}
 
 	@Override
 	public boolean isElementPresent(String locator) {

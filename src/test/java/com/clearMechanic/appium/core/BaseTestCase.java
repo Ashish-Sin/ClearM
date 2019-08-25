@@ -22,19 +22,20 @@ import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 
 import com.clearMechanic.util.FileReader;
+import com.clearMechanic.util.MobileClient;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
-public class BaseTestCase {
+public class BaseTestCase extends MobileClient{
 
 	public AppiumDriver<MobileElement> driver;
 	private static final Logger logger = LoggerFactory.getLogger(BaseTestCase.class);
 	protected int timeOut = 20;
 	private int port = 0;
 	private final String udid;
-
+	
 	public BaseTestCase(String udid, int port) {
 		this.udid = udid;
 		this.port = port;
@@ -53,6 +54,8 @@ public class BaseTestCase {
 			throw new Exception(e);
 		}
 		driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
+		setTheWebDriver(driver);
+//		setWebDriver(driver);
 	}
 
 	public void destropAppSession() throws Exception {

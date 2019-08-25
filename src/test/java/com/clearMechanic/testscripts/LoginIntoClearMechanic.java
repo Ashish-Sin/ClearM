@@ -1,12 +1,10 @@
 package com.clearMechanic.testscripts;
 
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
 
 import com.clearMechanic.appium.core.BaseTestCase;
-import com.clearMechanic.pages.HomePage;
 import com.clearMechanic.pages.LogInPage;
 
 public class LoginIntoClearMechanic extends BaseTestCase {
@@ -28,7 +26,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	@Test
 	public void testloginIntoApllication() throws Exception {
 		
-		
+		System.out.println("Ashish");
 	}
 	
 //	@AfterMethod
