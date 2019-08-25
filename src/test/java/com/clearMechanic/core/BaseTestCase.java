@@ -1,4 +1,4 @@
-package com.clearMechanic.appium.core;
+package com.clearMechanic.core;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,7 +22,7 @@ import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 
 import com.clearMechanic.util.FileReader;
-import com.clearMechanic.util.MobileClient;
+import com.clearMechanic.core.MobileClient;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;

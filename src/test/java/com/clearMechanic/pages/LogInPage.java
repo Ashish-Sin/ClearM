@@ -1,19 +1,18 @@
 package com.clearMechanic.pages;
 
-import static com.clearMechanic.locators.Login.BackButton;
 import static com.clearMechanic.locators.Login.DealerOrShopName;
 import static com.clearMechanic.locators.Login.Email;
-import static com.clearMechanic.locators.Login.ForgotPassword;
 import static com.clearMechanic.locators.Login.Login;
 import static com.clearMechanic.locators.Login.LoginButton;
 import static com.clearMechanic.locators.Login.Password;
+import static com.clearMechanic.locators.Login.ForgotPassword;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.clearMechanic.util.ButtonControl;
+import com.clearMechanic.core.ButtonControl;
+import com.clearMechanic.core.InputControl;
 import com.clearMechanic.util.FileReader;
-import com.clearMechanic.util.InputControl;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -30,22 +29,10 @@ public class LogInPage extends BasePage {
 	public InputControl email = new InputControl(getAppiumDriver(), Email.toBy());
 	public InputControl password = new InputControl(getAppiumDriver(), Password.toBy());
 	public ButtonControl loginButton = new ButtonControl(getAppiumDriver(), LoginButton.toBy());
+	public ButtonControl forgotPassword = new ButtonControl(getAppiumDriver(), ForgotPassword.toBy());
 
-	public void clickOnBackButton() {
-		waitForElementClickable(BackButton.toBy());
-		click(BackButton.toBy());
-		logger.debug("Click on 'BackButton' Button");
-
-	}
-
-	public void clickOnForgotPasswordLink() {
-		waitForElementClickable(ForgotPassword.toBy());
-		click(ForgotPassword.toBy());
-		logger.debug("Click on 'Forgot Password ?' link");
-
-	}
-
-	private void goTo() {
+	public void goTo() {
+		
 		tapToLogin.click();
 	}
 

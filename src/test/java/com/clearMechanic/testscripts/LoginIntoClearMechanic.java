@@ -4,7 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
 
-import com.clearMechanic.appium.core.BaseTestCase;
+import com.clearMechanic.core.BaseTestCase;
 import com.clearMechanic.pages.LogInPage;
 
 public class LoginIntoClearMechanic extends BaseTestCase {

@@ -1,4 +1,4 @@
-package com.clearMechanic.util;
+package com.clearMechanic.core;
 
 import org.openqa.selenium.By;
 
