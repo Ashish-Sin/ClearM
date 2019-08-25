@@ -12,21 +12,16 @@ public class InputControl extends TestFramework {
 	}
 	
 	public MobileElement setText(String text) {
-		MobileElement element = getMobileElement(getLocatorBy());
+		MobileElement element = getMobileElement();
 		element.clear();
 		element.sendKeys(text);
 		return element;
 	}
 
 	public MobileElement appendText(String text) {
-		MobileElement element = getMobileElement(getLocatorBy());
+		MobileElement element = getMobileElement();
 		element.sendKeys(text);
 		return element;
-	}
-	
-	private MobileElement getMobileElement(By by) {
-//		waitForElementPresent(by);
-		return driver.findElement(getLocatorBy());
 	}
 
 }

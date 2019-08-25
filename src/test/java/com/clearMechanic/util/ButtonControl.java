@@ -10,4 +10,8 @@ public class ButtonControl extends TestFramework {
 	public ButtonControl(AppiumDriver<MobileElement> driver, By by) {
 		  super(driver, by);
 	}
+	
+	public String getText() {
+		return this.getMobileElement().getText();
+	}
 }

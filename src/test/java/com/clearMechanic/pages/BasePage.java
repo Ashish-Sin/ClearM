@@ -1,11 +1,5 @@
 package com.clearMechanic.pages;
 
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -16,24 +10,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.clearMechanic.appium.core.IBasePage;
 import com.clearMechanic.util.MobileClient;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+
 public abstract class BasePage extends MobileClient implements IBasePage {
 
-	protected AppiumDriver<MobileElement> driver;
+//	protected AppiumDriver<MobileElement> driver;
 	public int globalWaitTime = 10;
 
 	public BasePage(AppiumDriver<MobileElement> driver) {
 		this.driver = driver;
 	}
 
-	public AppiumDriver<MobileElement> getApiumDriver() {
-		return driver;
-	}
-
+//	public AppiumDriver<MobileElement> getApiumDriver() {         // Need to find out how it differs from AndroidDriver
+//		return driver;
+//	}
+//
 //	public AndroidDriver<MobileElement> getAndroidDriver() {       // Need to move this to MobileClient
 //		return (AndroidDriver<MobileElement>) driver;
 //	}
 
-	@Override
 	public boolean isElementPresent(String locator) {
 		try {
 			driver.findElement(ByLocator(locator));
@@ -43,7 +40,6 @@ public abstract class BasePage extends MobileClient implements IBasePage {
 		}
 	}
 
-	@Override
 	public boolean isElementPresent(By by) {
 		try {
 			driver.findElement(by);
@@ -53,7 +49,6 @@ public abstract class BasePage extends MobileClient implements IBasePage {
 		}
 	}
 
-	@Override
 	public void moveElement(By source, By target) {
 		MobileElement elSource = this.find(source);
 		MobileElement elDest = this.find(target);
@@ -67,18 +62,15 @@ public abstract class BasePage extends MobileClient implements IBasePage {
 		return element.getAttribute(attribute);
 	}
 
-	@Override
 	public String getText(By by) {
 		MobileElement element = find(by);
 		return element.getText();
 	}
 
-	@Override
 	public void hideKeyboard() {
 		driver.hideKeyboard();
 	}
 
-	@Override
 	public void clickOn(By by) {
 		driver.findElement(by).click();
 	}
@@ -91,7 +83,6 @@ public abstract class BasePage extends MobileClient implements IBasePage {
 		return element;
 	}
 
-	@Override
 	public MobileElement click(MobileElement element) {
 		element.click();
 		return element;
@@ -125,25 +116,21 @@ public abstract class BasePage extends MobileClient implements IBasePage {
 		return driver.findElement(by);
 	}
 
-	@Override
 	public void waitForElementPresent(By by) {
 		WebDriverWait wait = new WebDriverWait(driver, globalWaitTime);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 	}
 
-	@Override
 	public void waitForElementClickable(By by) {
 		WebDriverWait wait = new WebDriverWait(driver, globalWaitTime);
 		wait.until(ExpectedConditions.elementToBeClickable(by));
 	}
 
-	@Override
 	public void waitForElementNotPresent(String locator) {
 		WebDriverWait wait = new WebDriverWait(driver, globalWaitTime);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(ByLocator(locator)));
 	}
 
-	@Override
 	public void scrollFormCenter(String direction) {
 		Dimension size = driver.manage().window().getSize();
 		switch (direction) {
@@ -180,7 +167,6 @@ public abstract class BasePage extends MobileClient implements IBasePage {
 
 	}
 
-	@Override
 	public void TouchScreen() {
 		Dimension size = driver.manage().window().getSize();
 		int x = size.width / 2;
@@ -189,13 +175,11 @@ public abstract class BasePage extends MobileClient implements IBasePage {
 //		action1.perform();																			//Commented due to version mismatch
 	}
 
-	@Override
 	public List<MobileElement> getMobileElements(By by) {
 		return driver.findElements(by);
 	}
 
 	// Handle locator type
-	@Override
 	public By ByLocator(String locator) {
 		By result = null;
 		if (locator.startsWith("//")) {

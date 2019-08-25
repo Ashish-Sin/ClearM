@@ -25,11 +25,11 @@ public class LogInPage extends BasePage {
 		super(driver);
 	}
 
-	public ButtonControl tapToLogin = new ButtonControl(getWebDriver(), Login.toBy());
-	public InputControl dealerName = new InputControl(getWebDriver(), DealerOrShopName.toBy());
-	public InputControl email = new InputControl(getWebDriver(), Email.toBy());
-	public InputControl password = new InputControl(getWebDriver(), Password.toBy());
-	public ButtonControl loginButton = new ButtonControl(getWebDriver(), LoginButton.toBy());
+	public ButtonControl tapToLogin = new ButtonControl(getAppiumDriver(), Login.toBy());
+	public InputControl dealerName = new InputControl(getAppiumDriver(), DealerOrShopName.toBy());
+	public InputControl email = new InputControl(getAppiumDriver(), Email.toBy());
+	public InputControl password = new InputControl(getAppiumDriver(), Password.toBy());
+	public ButtonControl loginButton = new ButtonControl(getAppiumDriver(), LoginButton.toBy());
 
 	public void clickOnBackButton() {
 		waitForElementClickable(BackButton.toBy());

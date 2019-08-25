@@ -54,7 +54,7 @@ public class BaseTestCase extends MobileClient{
 			throw new Exception(e);
 		}
 		driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
-		setTheWebDriver(driver);
+		setTheAppiumDriver(driver);
 //		setWebDriver(driver);
 	}
 

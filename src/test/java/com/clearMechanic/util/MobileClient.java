@@ -7,21 +7,21 @@ public class MobileClient {
 
 public AppiumDriver<MobileElement> driver = null;
 	
-	public void setWebDriver(AppiumDriver<MobileElement> webDriver) {
-		this.driver = webDriver;
+	public void setAppiumDriver(AppiumDriver<MobileElement> appiumDriver) {
+		this.driver = appiumDriver;
 	}
 	
-	public AppiumDriver<MobileElement> getWebDriver() {
+	public AppiumDriver<MobileElement> getAppiumDriver() {
 		if (driver == null) {
-			driver = theWebDriver;
+			driver = theAppiumDriver;
 		}
 		return driver;
 	}
 	
-	private static AppiumDriver<MobileElement> theWebDriver;
+	private static AppiumDriver<MobileElement> theAppiumDriver;
 	
-	public void setTheWebDriver(AppiumDriver<MobileElement> driver) {
-		theWebDriver = driver;
+	public void setTheAppiumDriver(AppiumDriver<MobileElement> driver) {
+		theAppiumDriver = driver;
 	}
 	
 }

@@ -22,4 +22,9 @@ public class TestFramework extends MobileClient {
 		driver.findElement(locateBy).click();
 	}
 	
+	protected MobileElement getMobileElement() {
+//		waitForElementPresent(by);
+		return driver.findElement(getLocatorBy());
+	}
+	
 }
