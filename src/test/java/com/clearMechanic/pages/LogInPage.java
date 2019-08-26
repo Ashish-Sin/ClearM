@@ -21,8 +21,8 @@ public class LogInPage extends BasePage {
 	private static final Logger logger = LoggerFactory.getLogger(LogInPage.class);
 	
 	private final static String DEALER_NAME = FileReader.readData("DealerName");
-	private final static String EMAIL = FileReader.readData("DealerName");
-	private final static String PASSWORD = FileReader.readData("DealerName");
+	private final static String EMAIL = FileReader.readData("Email");
+	private final static String PASSWORD = FileReader.readData("Password");
 
 	public LogInPage(AppiumDriver<MobileElement> driver) {
 		super(driver);
