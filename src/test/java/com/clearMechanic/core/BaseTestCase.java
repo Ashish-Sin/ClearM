@@ -47,7 +47,7 @@ public class BaseTestCase extends MobileClient{
 			port = Integer.parseInt(FileReader.readData("Port"));
 		String host = FileReader.readData("Host");
 		try {
-			driver = new AndroidDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"), getDesiredCapabilities(this.getAppAbsoultePath()));
+			driver = new AndroidDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"), getDesiredCapabilities(this.getAppAbsoultePath(), this.getAndroidVersion()));
 
 		} catch (Exception e) {
 			logger.debug("appium server not stated");
@@ -76,17 +76,21 @@ public class BaseTestCase extends MobileClient{
 		String appName = app.getAbsolutePath();
 		return appName;
 	}
+	
+	public String getAndroidVersion() {
+		return FileReader.readData("AndroidVersion");
+	}
 
 	/**
 	 * @author Setup configuration in DesiredCapabilities which appium used to run test
 	 * @param appPath application absolute path
 	 * @return object of DesiredCapabilities.
 	 */
-	public DesiredCapabilities getDesiredCapabilities(String appPath) throws Exception {
+	public DesiredCapabilities getDesiredCapabilities(String appPath, String androidVersion) throws Exception {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("platformName", "Android");
 		capabilities.setCapability("deviceName", "Appium");
-		capabilities.setCapability("platformVersion", "9");
+		capabilities.setCapability("platformVersion", androidVersion);
 		capabilities.setCapability("appPackage", "com.clearcheck.cmbeta");
 		capabilities.setCapability("appActivity", "md5e047583c9ad193c8c022c6c9ad74d95b.HostActivity");
 //		capabilities.setCapability("app", appPath);

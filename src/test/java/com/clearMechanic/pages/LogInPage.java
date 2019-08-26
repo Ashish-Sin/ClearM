@@ -19,6 +19,10 @@ import io.appium.java_client.MobileElement;
 
 public class LogInPage extends BasePage {
 	private static final Logger logger = LoggerFactory.getLogger(LogInPage.class);
+	
+	private final static String DEALER_NAME = FileReader.readData("DealerName");
+	private final static String EMAIL = FileReader.readData("DealerName");
+	private final static String PASSWORD = FileReader.readData("DealerName");
 
 	public LogInPage(AppiumDriver<MobileElement> driver) {
 		super(driver);
@@ -37,9 +41,9 @@ public class LogInPage extends BasePage {
 	}
 
 	private void enterDetails() throws Exception {
-		dealerName.setText(FileReader.readData("DealerName"));
-		email.setText(FileReader.readData("Email"));
-		password.setText(FileReader.readData("Password"));
+		dealerName.setText(DEALER_NAME);
+		email.setText(EMAIL);
+		password.setText(PASSWORD);
 	}
 
 	public void logintoApp() throws Exception {

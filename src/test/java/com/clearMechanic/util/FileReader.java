@@ -22,10 +22,10 @@ public class FileReader {
 	 *            String properties file key
 	 * @return the found value from properties file.
 	 */
-	public static String readData(String key) throws Exception {
-		if (StringUtils.isEmpty(key)) {
-			throw new Exception("key name is null");
-		}
+	public static String readData(String key) {
+//		if (StringUtils.isEmpty(key)) {
+//			throw new Exception("key name is null");
+//		}
 
 		String value = "";
 		try {
