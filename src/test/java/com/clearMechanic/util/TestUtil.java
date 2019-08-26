@@ -1,20 +1,30 @@
 package com.clearMechanic.util;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.clearMechanic.core.MobileClient;
+import com.clearMechanic.core.TestFramework;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.TouchAction;
 
-public class TestUtil extends MobileClient {
+public class TestUtil extends TestFramework {
+
+	public TestUtil(AppiumDriver<MobileElement> driver, By by) {
+		super(driver, by);
+	}
 
 	public int globalWaitTime = 10;
+	
+	public static void waitforClickableElement(AppiumDriver<MobileElement> driver, MobileElement el, int globalWaitTime) {
+		WebDriverWait wait = new WebDriverWait(driver, globalWaitTime);
+		wait.until(ExpectedConditions.elementToBeClickable(el));
+	}
+	
+	public void waitforClickableElement(int globalWaitTime) {
+		waitforClickableElement(getAppiumDriver(), getMobileElement(), globalWaitTime);
+	}
 
 //	public boolean isElementPresent(String locator) {
 //		try {
@@ -51,9 +61,9 @@ public class TestUtil extends MobileClient {
 //		return element.getText();
 //	}
 //
-//	public void hideKeyboard() {
-//		driver.hideKeyboard();
-//	}
+	public void hideKeyboard() {
+		getAppiumDriver().hideKeyboard();
+	}
 //
 //	public void clickOn(By by) {
 //		driver.findElement(by).click();

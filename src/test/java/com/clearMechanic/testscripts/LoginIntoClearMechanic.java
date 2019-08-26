@@ -26,7 +26,15 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	@Test
 	public void testloginIntoApllication() throws Exception {
 		
-		System.out.println("Ashish");
+		try {
+			System.out.println("Ashish");
+			int i = 1/0;
+		} catch (Exception e) {
+			System.out.println("Singh");
+			captureScreenshot("testloginIntoApllication");
+			System.out.println("Nasim");
+			throw e;
+		}
 	}
 	
 //	@AfterMethod
