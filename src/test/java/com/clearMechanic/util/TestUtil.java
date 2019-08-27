@@ -1,5 +1,14 @@
 package com.clearMechanic.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,6 +33,44 @@ public class TestUtil extends TestFramework {
 	
 	public void waitforClickableElement(int globalWaitTime) {
 		waitforClickableElement(getAppiumDriver(), getMobileElement(), globalWaitTime);
+		
+	}
+	
+	public static String getExcelData(String sheetName , int rowNum , int colNum) throws InvalidFormatException, IOException{
+		  File file = getLatestFilefromDir(getPath() + "\\downloads\\");
+	      FileInputStream fis = new FileInputStream(file);
+	      Workbook wb = WorkbookFactory.create(fis);
+	      Sheet sh = wb.getSheet(sheetName);
+	      Row row = sh.getRow(rowNum);
+	      String data = row.getCell(colNum).getStringCellValue();
+	      return data;
+	}
+	
+//	public void createFolder(String folderPath) {
+//		File file = new File(folderPath);
+//		if (!file.exists()) {
+//			file.mkdir();
+//		}
+//	}
+	
+	private static String getPath() {
+		return System.getProperty("user.dir");
+	}
+	
+	private static File getLatestFilefromDir(String dirPath) {
+		File dir = new File(dirPath);
+		File[] files = dir.listFiles();
+		if (files == null || files.length == 0) {
+			return null;
+		}
+
+		File lastModifiedFile = files[0];
+		for (int i = 1; i < files.length; i++) {
+			if (lastModifiedFile.lastModified() < files[i].lastModified()) {
+				lastModifiedFile = files[i];
+			}
+		}
+		return lastModifiedFile;
 	}
 
 //	public boolean isElementPresent(String locator) {

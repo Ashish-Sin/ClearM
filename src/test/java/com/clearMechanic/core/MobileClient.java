@@ -18,7 +18,7 @@ public AppiumDriver<MobileElement> driver = null;
 		return driver;
 	}
 	
-	private static AppiumDriver<MobileElement> theAppiumDriver;
+	private static AppiumDriver<MobileElement> theAppiumDriver;                          // Yet to decide on it's visibility
 	
 	public void setTheAppiumDriver(AppiumDriver<MobileElement> driver) {
 		theAppiumDriver = driver;

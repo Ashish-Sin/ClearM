@@ -53,9 +53,9 @@ public class BaseTestCase extends MobileClient{
 			logger.debug("appium server not stated");
 			throw new Exception(e);
 		}
-		driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
-		setTheAppiumDriver(driver);
-//		setWebDriver(driver);
+//		driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
+//		setTheAppiumDriver(driver);
+		setAppiumDriver(driver);
 	}
 
 	public void destropAppSession() throws Exception {
@@ -181,9 +181,9 @@ public class BaseTestCase extends MobileClient{
 	}
 
 	// capturing screenshot
-	public void captureScreenshot(String fileName) {
-		String folderPath = "build/outputs/screenshots/";
-		createFolder("build/outputs");
+	public void captureScreenshot(String fileName) throws Exception {
+		String folderPath = "screenshots//";
+//		createFolder("build/outputs");
 		createFolder(folderPath);
 		try {
 

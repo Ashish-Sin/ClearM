@@ -10,5 +10,12 @@
 	<classpathentry kind="lib" path="jarfiles/org.apache.commons.io.jar"/>
 	<classpathentry kind="lib" path="jarfiles/selenium-server-standalone-3.141.59.jar"/>
 	<classpathentry kind="lib" path="jarfiles/testng-6.9.9.jar"/>
+	<classpathentry kind="lib" path="jarfiles/poi-examples-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="jarfiles/poi-excelant-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="jarfiles/poi-ooxml-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="jarfiles/poi-ooxml-schemas-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="jarfiles/poi-scratchpad-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="jarfiles/poi-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="jarfiles/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
