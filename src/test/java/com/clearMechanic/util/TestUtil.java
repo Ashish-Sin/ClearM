@@ -37,24 +37,34 @@ public class TestUtil extends TestFramework {
 	}
 	
 	public static String getExcelData(String sheetName , int rowNum , int colNum) throws InvalidFormatException, IOException{
-		  File file = getLatestFilefromDir(getPath() + "\\downloads\\");
-	      FileInputStream fis = new FileInputStream(file);
-	      Workbook wb = WorkbookFactory.create(fis);
-	      Sheet sh = wb.getSheet(sheetName);
-	      Row row = sh.getRow(rowNum);
-	      String data = row.getCell(colNum).getStringCellValue();
-	      return data;
+		
+		Row row = null;
+
+		try {
+//			File file = getLatestFilefromDir(getPath() + "\\downloads\\");
+			String file = getPath() + FileReader.readData("VIN");
+		    FileInputStream fis = new FileInputStream(file);
+		    Workbook wb = WorkbookFactory.create(fis);
+		    Sheet sh = wb.getSheet(sheetName);
+		    row = sh.getRow(rowNum);
+		    String data = row.getCell(colNum).getStringCellValue();
+		    return data;
+		} catch (IllegalStateException e) {
+			double data = row.getCell(colNum).getNumericCellValue();
+			return String.valueOf(data);
+		}
 	}
 	
-//	public void createFolder(String folderPath) {
-//		File file = new File(folderPath);
-//		if (!file.exists()) {
-//			file.mkdir();
-//		}
-//	}
+	public void createFolder(String folderPath) {
+		File file = new File(folderPath);
+		if (!file.exists()) {
+			file.mkdir();
+		}
+	}
 	
-	private static String getPath() {
-		return System.getProperty("user.dir");
+	public static String getPath() {
+		System.out.println(System.getProperty("user.dir") + "\\src\\test\\java\\com\\clearMechanic\\data\\" + FileReader.readData("VIN"));
+		return System.getProperty("user.dir") + "\\src\\test\\java\\com\\clearMechanic\\data\\";
 	}
 	
 	private static File getLatestFilefromDir(String dirPath) {
