@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import com.clearMechanic.core.BaseTestCase;
 import com.clearMechanic.pages.LogInPage;
+import com.clearMechanic.util.TestUtil;
 
 public class LoginIntoClearMechanic extends BaseTestCase {
 	
@@ -28,7 +29,9 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 		
 		try {
 			System.out.println("Ashish");
-			int i = 1/0;
+			String s = TestUtil.getExcelData("VIN", 1, 1);
+			System.out.println(s);
+//			int i = 1/0;
 		} catch (Exception e) {
 			System.out.println("Singh");
 			captureScreenshot("testloginIntoApllication");
