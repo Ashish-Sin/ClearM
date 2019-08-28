@@ -3,8 +3,10 @@ package com.clearMechanic.locators;
 import org.openqa.selenium.By;
 
 public enum Inspection implements ILocator {
-	InspectionTab(By.id("com.clearcheck.cmbeta:MainView/tbInspection"));
-	
+	InspectionTab(By.id("com.clearcheck.cmbeta:MainView/tbInspection")),
+	VehicleReception(By.id("com.clearcheck.cmbeta:Views_Main_Tabs_InspectionFull/lblRepairNumberHeader")),
+	RO(By.xpath("//*[contains(@resource-id, 'lblCaption') and contains(@text, 'RO')]")),
+	TypeInVIN(By.xpath("//*[contains(@resource-id, 'lblCaption') and contains(@text, 'Type in VIN')]"));
 	private final By locator;
 
 	Inspection(By locator) {
