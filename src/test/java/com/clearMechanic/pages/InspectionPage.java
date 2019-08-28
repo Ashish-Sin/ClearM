@@ -1,6 +1,7 @@
 package com.clearMechanic.pages;
 
 import org.openqa.selenium.By;
+import static com.clearMechanic.locators.Inspection.*;
 
 import com.clearMechanic.core.ButtonControl;
 
@@ -13,12 +14,19 @@ public class InspectionPage extends BasePage {
 		super(driver);
 	}
 	
-	ButtonControl vehicleReception = new ButtonControl(getAppiumDriver(), By.id(""));
-	ButtonControl inspectionItems = new ButtonControl(getAppiumDriver(), By.id(""));
+	public ButtonControl inspectionTab = new ButtonControl(getAppiumDriver(), InspectionTab.toBy());
+	public ButtonControl vehicleReception = new ButtonControl(getAppiumDriver(), By.id(""));
+	public ButtonControl inspectionItems = new ButtonControl(getAppiumDriver(), By.id(""));
 
 	@Override
 	public void goTo() {
-		// TODO Auto-generated method stub
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		inspectionTab.click();
 		
 	}
 

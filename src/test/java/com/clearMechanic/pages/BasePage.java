@@ -25,7 +25,7 @@ public abstract class BasePage extends MobileClient implements IBasePage {
 //		return (AndroidDriver<MobileElement>) driver;
 //	}
 	
-	public ButtonControl back = new ButtonControl(getAppiumDriver(), By.id(""));
+	public ButtonControl back = new ButtonControl(getAppiumDriver(), By.xpath("//*[contains(@resource-id, 'btnLeftButton')]"));
 	public ButtonControl done = new ButtonControl(getAppiumDriver(), By.id(""));
 
 }
