@@ -63,7 +63,6 @@ public class TestUtil extends TestFramework {
 	}
 	
 	public static String getPath() {
-		System.out.println(System.getProperty("user.dir") + "\\src\\test\\java\\com\\clearMechanic\\data\\" + FileReader.readData("VIN"));
 		return System.getProperty("user.dir") + "\\src\\test\\java\\com\\clearMechanic\\data\\";
 	}
 	
@@ -81,6 +80,15 @@ public class TestUtil extends TestFramework {
 			}
 		}
 		return lastModifiedFile;
+	}
+	
+	public static void sleep(long time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 //	public boolean isElementPresent(String locator) {

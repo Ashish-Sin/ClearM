@@ -9,7 +9,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +21,6 @@ import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 
 import com.clearMechanic.util.FileReader;
-import com.clearMechanic.core.MobileClient;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;

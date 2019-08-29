@@ -33,14 +33,15 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	}
 
 	@Test
-	public void testloginIntoApllication() throws Exception {
+	public void testEnterVehicleDetails() throws Exception {
 
 		try {
 			
 			inspectionPage.goTo();
 			inspectionPage.vehicleReception.click();
-			inspectionPage.ro.setText("465456");
-			inspectionPage.typeInVIN.setText("5465465");
+			TestUtil.sleep(4000);
+			inspectionPage.enterVehicleDetails();
+			inspectionPage.done.click();
 		} catch (Exception e) {
 			captureScreenshot("testloginIntoApllication");
 			throw e;
