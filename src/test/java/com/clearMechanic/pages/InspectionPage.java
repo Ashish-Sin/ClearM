@@ -18,11 +18,13 @@ public class InspectionPage extends BasePage {
 	
 	public ButtonControl inspectionTab = new ButtonControl(getAppiumDriver(), InspectionTab.toBy());
 	public ButtonControl vehicleReception = new ButtonControl(getAppiumDriver(), VehicleReception.toBy());
-	public ButtonControl ro = new ButtonControl(getAppiumDriver(), RO.toBy());
+	public InputControl ro = new InputControl(getAppiumDriver(), RO.toBy());
 	public InputControl textField = new InputControl(getAppiumDriver(), TextField.toBy());
-	public ButtonControl typeInVIN = new ButtonControl(getAppiumDriver(), TypeInVIN.toBy());
-	public ButtonControl plates = new ButtonControl(getAppiumDriver(), Plates.toBy());
+	public InputControl typeInVIN = new InputControl(getAppiumDriver(), TypeInVIN.toBy());
+	public InputControl plates = new InputControl(getAppiumDriver(), Plates.toBy());
 	public ButtonControl inspectionItems = new ButtonControl(getAppiumDriver(), By.id(""));
+	public ButtonControl done = new ButtonControl(getAppiumDriver(), By.xpath("//*[contains(@resource-id, 'btnRightButton')]"));
+
 
 	@Override
 	public void goTo() {
@@ -31,13 +33,32 @@ public class InspectionPage extends BasePage {
 		TestUtil.sleep(4000);
 	}
 	
-	public void enterVehicleDetails() {
-		ro.click();
-		textField.setTextUsingAppKeyBoard("465456");
-		typeInVIN.click();
-		textField.setText("465456");
-		plates.click();
-		textField.setText("46545");
+	public void enterVehicleDetails(String roNumber, String vinNumber, String plates) {
+		enterRoNumberInVehicleDetails(roNumber);
+		typeVinNumberInVehicleDetails(vinNumber);
+		enterPlatesInVehicleDetails(plates);
+	}
+	
+	public void enterValueUsingAppKeyboard(InputControl fieldName, String FieldValue) {
+		fieldName.click();
+		textField.setTextUsingAppKeyBoard(FieldValue);
+	}
+
+	public void enterValueUsingPhoneKeyboard(InputControl fieldName, String FieldValue) {
+		fieldName.click();
+		textField.setText(FieldValue);
+	}
+
+	public void enterRoNumberInVehicleDetails(String FieldValue) {
+		enterValueUsingAppKeyboard(ro, FieldValue);
+	}
+
+	public void typeVinNumberInVehicleDetails(String FieldValue) {
+		enterValueUsingPhoneKeyboard(typeInVIN, FieldValue);
+	}
+
+	public void enterPlatesInVehicleDetails(String FieldValue) {
+		enterValueUsingPhoneKeyboard(plates, FieldValue);
 	}
 
 }

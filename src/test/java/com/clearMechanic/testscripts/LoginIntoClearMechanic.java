@@ -14,7 +14,6 @@ import com.clearMechanic.util.TestUtil;
 public class LoginIntoClearMechanic extends BaseTestCase {
 
 	private LogInPage loginPage;
-	private HomePage homePage;
 	private InspectionPage inspectionPage;
 
 	@Factory(dataProvider = "listDevices")
@@ -27,28 +26,32 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	public void LaunchApp() throws Exception {
 		setUp();
 		loginPage = new LogInPage(getAppiumDriver());
-		homePage = new HomePage(getAppiumDriver());
 		inspectionPage = new InspectionPage(getAppiumDriver());
 		loginPage.logintoApp();
 	}
 
 	@Test
 	public void testEnterVehicleDetails() throws Exception {
-
+		String roNumber = "465456";
+		String plates = "46545";
 		try {
-			
+
 			inspectionPage.goTo();
 			inspectionPage.vehicleReception.click();
+
+			String vinNumber = TestUtil.getExcelData("VIN", 1, 1);
+			System.out.println("++++++++++++++++++++++" + vinNumber + "++++++++++++++++++++++");
 			TestUtil.sleep(4000);
-			inspectionPage.enterVehicleDetails();
+			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
 			inspectionPage.done.click();
+
 		} catch (Exception e) {
 			captureScreenshot("testloginIntoApllication");
 			throw e;
 		}
 	}
 
-//	@AfterMethod
+	@AfterMethod
 	public void quiteApp() throws Exception {
 		destropAppSession();
 	}
