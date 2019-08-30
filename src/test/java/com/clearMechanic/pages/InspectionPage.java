@@ -18,11 +18,12 @@ public class InspectionPage extends BasePage {
 	
 	public ButtonControl inspectionTab = new ButtonControl(getAppiumDriver(), InspectionTab.toBy());
 	public ButtonControl vehicleReception = new ButtonControl(getAppiumDriver(), VehicleReception.toBy());
+	public ButtonControl inspectionItems = new ButtonControl(getAppiumDriver(), InspectionItems.toBy());
 	public InputControl ro = new InputControl(getAppiumDriver(), RO.toBy());
 	public InputControl textField = new InputControl(getAppiumDriver(), TextField.toBy());
 	public InputControl typeInVIN = new InputControl(getAppiumDriver(), TypeInVIN.toBy());
 	public InputControl plates = new InputControl(getAppiumDriver(), Plates.toBy());
-	public ButtonControl inspectionItems = new ButtonControl(getAppiumDriver(), By.id(""));
+	public ButtonControl addInspectionItemSearchField = new ButtonControl(getAppiumDriver(), AddInspectionItemSearchField.toBy());
 	public ButtonControl done = new ButtonControl(getAppiumDriver(), By.xpath("//*[contains(@resource-id, 'btnRightButton')]"));
 
 
@@ -59,6 +60,19 @@ public class InspectionPage extends BasePage {
 
 	public void enterPlatesInVehicleDetails(String fieldValue) {
 		enterValue(plates, fieldValue);
+	}
+	
+	public void addInspectionItem(String inspectionItem) {
+		MobileElement el = getAppiumDriver().findElement(By.xpath(String.format("//*[@text='%s']", inspectionItem)));
+		el.click();
+		done.click();
+		done.click();
+		TestUtil.sleep(3000);
+		el.click();
+	}
+	
+	public void clickOnAddedInspectionItem() {
+		
 	}
 
 }

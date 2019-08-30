@@ -56,7 +56,25 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			captureScreenshot("testloginIntoApllication");
 			throw e;
 		}
+	}
+	
+	@Test
+	public void dusraTestCase() throws Exception {
 		
+		try {
+			
+			inspectionPage.goTo();
+			TestUtil.sleep(4000);
+			inspectionPage.inspectionItems.click();
+			TestUtil.sleep(4000);
+			inspectionPage.addInspectionItemSearchField.click();
+			TestUtil.hideKeyboard(getAppiumDriver());
+			inspectionPage.addInspectionItem("\"BAT\" Terminal");
+			
+		} catch (Exception e) {
+			captureScreenshot("dusraTestCase");
+			throw e;
+		}
 	}
 
 //	@AfterMethod
