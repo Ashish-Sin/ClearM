@@ -6,6 +6,7 @@ import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
 
 import com.clearMechanic.core.BaseTestCase;
+import com.clearMechanic.pages.HistoryPage;
 import com.clearMechanic.pages.HomePage;
 import com.clearMechanic.pages.InspectionPage;
 import com.clearMechanic.pages.LogInPage;
@@ -15,6 +16,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 
 	private LogInPage loginPage;
 	private InspectionPage inspectionPage;
+	private HistoryPage historyPage;
 
 	@Factory(dataProvider = "listDevices")
 	public LoginIntoClearMechanic(String udid, int port) {
@@ -27,11 +29,12 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 		setUp();
 		loginPage = new LogInPage(getAppiumDriver());
 		inspectionPage = new InspectionPage(getAppiumDriver());
+		historyPage = new HistoryPage(getAppiumDriver());
 		loginPage.logintoApp();
 	}
 
 	@Test
-	public void testEnterVehicleDetails() throws Exception {
+	public void testEnterAndVerifyVehicleDetails() throws Exception {
 		String roNumber = "465456";
 		String plates = "46545";
 		try {
@@ -40,18 +43,23 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			inspectionPage.vehicleReception.click();
 
 			String vinNumber = TestUtil.getExcelData("VIN", 1, 1);
-			System.out.println("++++++++++++++++++++++" + vinNumber + "++++++++++++++++++++++");
 			TestUtil.sleep(4000);
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
+			TestUtil.hideKeyboard(getAppiumDriver());
 			inspectionPage.done.click();
-
+			TestUtil.sleep(4000);
+			
+			historyPage.goTo();
+			historyPage.verifyRONumberPresent(roNumber);
+			
 		} catch (Exception e) {
 			captureScreenshot("testloginIntoApllication");
 			throw e;
 		}
+		
 	}
 
-	@AfterMethod
+//	@AfterMethod
 	public void quiteApp() throws Exception {
 		destropAppSession();
 	}

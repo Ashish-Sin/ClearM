@@ -39,26 +39,26 @@ public class InspectionPage extends BasePage {
 		enterPlatesInVehicleDetails(plates);
 	}
 	
-	public void enterValueUsingAppKeyboard(InputControl fieldName, String FieldValue) {
+	public void enterValueUsingAppKeyboard(InputControl fieldName, String fieldValue) {
 		fieldName.click();
-		textField.setTextUsingAppKeyBoard(FieldValue);
+		textField.setTextUsingAppKeyBoard(fieldValue);
 	}
 
-	public void enterValueUsingPhoneKeyboard(InputControl fieldName, String FieldValue) {
+	public void enterValue(InputControl fieldName, String fieldValue) {
 		fieldName.click();
-		textField.setText(FieldValue);
+		textField.setText(fieldValue);
 	}
 
-	public void enterRoNumberInVehicleDetails(String FieldValue) {
-		enterValueUsingAppKeyboard(ro, FieldValue);
+	public void enterRoNumberInVehicleDetails(String fieldValue) {
+		enterValueUsingAppKeyboard(ro, fieldValue);
 	}
 
-	public void typeVinNumberInVehicleDetails(String FieldValue) {
-		enterValueUsingPhoneKeyboard(typeInVIN, FieldValue);
+	public void typeVinNumberInVehicleDetails(String fieldValue) {
+		enterValue(typeInVIN, fieldValue);
 	}
 
-	public void enterPlatesInVehicleDetails(String FieldValue) {
-		enterValueUsingPhoneKeyboard(plates, FieldValue);
+	public void enterPlatesInVehicleDetails(String fieldValue) {
+		enterValue(plates, fieldValue);
 	}
 
 }

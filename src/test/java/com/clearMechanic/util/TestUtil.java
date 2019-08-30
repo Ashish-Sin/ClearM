@@ -13,16 +13,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.clearMechanic.core.MobileClient;
 import com.clearMechanic.core.TestFramework;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class TestUtil extends TestFramework {
+public class TestUtil extends MobileClient{
 
-	public TestUtil(AppiumDriver<MobileElement> driver, By by) {
-		super(driver, by);
-	}
+//	public TestUtil(AppiumDriver<MobileElement> driver, By by) {
+//		super(driver, by);
+//	}
 
 	public int globalWaitTime = 10;
 	
@@ -31,17 +32,16 @@ public class TestUtil extends TestFramework {
 		wait.until(ExpectedConditions.elementToBeClickable(el));
 	}
 	
-	public void waitforClickableElement(int globalWaitTime) {
-		waitforClickableElement(getAppiumDriver(), getMobileElement(), globalWaitTime);
-		
-	}
+//	public void waitforClickableElement(int globalWaitTime) {
+//		waitforClickableElement(getAppiumDriver(), getMobileElement(), globalWaitTime);
+//		
+//	}
 	
 	public static String getExcelData(String sheetName , int rowNum , int colNum) throws InvalidFormatException, IOException{
 		
 		Row row = null;
 
 		try {
-//			File file = getLatestFilefromDir(getPath() + "\\downloads\\");
 			String file = getPath() + FileReader.readData("VIN");
 		    FileInputStream fis = new FileInputStream(file);
 		    Workbook wb = WorkbookFactory.create(fis);
@@ -126,8 +126,8 @@ public class TestUtil extends TestFramework {
 //		return element.getText();
 //	}
 //
-	public void hideKeyboard() {
-		getAppiumDriver().hideKeyboard();
+	public static void hideKeyboard(AppiumDriver<MobileElement> driver) {
+		driver.hideKeyboard();
 	}
 //
 //	public void clickOn(By by) {

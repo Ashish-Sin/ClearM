@@ -3,6 +3,9 @@ package com.clearMechanic.pages;
 import static com.clearMechanic.locators.History.*;
 import static com.clearMechanic.locators.Inspection.TextField;
 
+import org.openqa.selenium.By;
+import org.testng.Assert;
+
 import com.clearMechanic.core.ButtonControl;
 import com.clearMechanic.core.InputControl;
 import com.clearMechanic.util.TestUtil;
@@ -17,19 +20,24 @@ public class HistoryPage extends BasePage{
 	}
 	
 	public InputControl textField = new InputControl(getAppiumDriver(), TextField.toBy());
-	public ButtonControl history = new ButtonControl(getAppiumDriver(), History.toBy());
+	public ButtonControl historyTab = new ButtonControl(getAppiumDriver(), HistoryTab.toBy());
 	public InputControl searchField = new InputControl(getAppiumDriver(), SearchField.toBy());
 	
 	
-	public void tapOnAlreadySearchedRO() {
-		
+	public void verifyRONumberPresent(String ro) {
+		MobileElement el = getAppiumDriver().findElement(By.xpath(String.format("//*[contains(@text, 'RO #%s')]", ro)));
+		searchField.click();
+		searchField.setTextUsingAppKeyBoard(ro);
+		Assert.assertTrue(el.isDisplayed());
 	}
+	
+	
 
 	@Override
 	public void goTo() {
 		// TODO Auto-generated method stub
 			TestUtil.sleep(4000);
-			history.click();
+			historyTab.click();
 			TestUtil.sleep(4000);
 	}
 	
@@ -43,6 +51,4 @@ public class HistoryPage extends BasePage{
 		TestUtil.sleep(2000);
 	}
 	
-	
-
 }
