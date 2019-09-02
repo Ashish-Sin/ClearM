@@ -56,7 +56,7 @@ public class BaseTestCase extends MobileClient{
 		setAppiumDriver(driver);
 	}
 
-	public void destropAppSession() throws Exception {
+	public void destroyAppSession() throws Exception {
 		driver.quit();
 	}
 

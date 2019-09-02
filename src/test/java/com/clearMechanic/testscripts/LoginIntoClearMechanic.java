@@ -59,9 +59,13 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	}
 	
 	@Test
-	public void dusraTestCase() throws Exception {
+	public void cameraTestCase() throws Exception {
 		
 		try {
+			
+			TestUtil.sleep(4000);
+			System.out.println(getAppiumDriver());
+			TestUtil.getAppiumDriver(inspectionPage.inspectionTab.getMobileElement());
 			
 			inspectionPage.goTo();
 			TestUtil.sleep(4000);
@@ -72,13 +76,13 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			inspectionPage.addInspectionItem("\"BAT\" Terminal");
 			
 		} catch (Exception e) {
-			captureScreenshot("dusraTestCase");
+			captureScreenshot("cameraTestCase");
 			throw e;
 		}
 	}
 
 //	@AfterMethod
 	public void quiteApp() throws Exception {
-		destropAppSession();
+		destroyAppSession();
 	}
 }

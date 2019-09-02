@@ -63,12 +63,14 @@ public class InspectionPage extends BasePage {
 	}
 	
 	public void addInspectionItem(String inspectionItem) {
+		TestUtil.sleep(30000);
 		MobileElement el = getAppiumDriver().findElement(By.xpath(String.format("//*[@text='%s']", inspectionItem)));
 		el.click();
 		done.click();
 		done.click();
 		TestUtil.sleep(3000);
-		el.click();
+		MobileElement el1 = getAppiumDriver().findElement(By.xpath(String.format("//*[@text='%s']", inspectionItem)));
+		el1.click();
 	}
 	
 	public void clickOnAddedInspectionItem() {
