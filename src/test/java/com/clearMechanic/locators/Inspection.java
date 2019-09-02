@@ -10,7 +10,11 @@ public enum Inspection implements ILocator {
 	Plates(By.xpath("//*[contains(@resource-id, 'lblCaption') and contains(@text, 'Plates')]")),
 	TextField(By.id("com.clearcheck.cmbeta:Controls_CmRow_VehicleReceptionInput/etTextInput")),
 	AddInspectionItemSearchField(By.xpath("//*[contains(@resource-id, 'txtSearchPlaceholder')]")),
-	TypeInVIN(By.xpath("//*[contains(@resource-id, 'lblCaption') and contains(@text, 'Type in VIN')]"));
+	TypeInVIN(By.xpath("//*[contains(@resource-id, 'lblCaption') and contains(@text, 'Type in VIN')]")),
+	TakePhoto(By.id("com.clearcheck.cmbeta:Views_Inspection_InspectionItemDetails/btnTakePhoto")),
+	ClickPhoto(By.id("com.clearcheck.cmbeta:Controls_CmOvalView/rlRoot")),
+	OKButton(By.id("com.clearcheck.cmbeta:Views_NewRepairOrder_MediaFiles_EditPhoto/btnOK")),
+	DeleteButton(By.id("com.clearcheck.cmbeta:Views_NewRepairOrder_MediaFiles_EditPhoto/btnDelete"));
 	private final By locator;
 
 	Inspection(By locator) {

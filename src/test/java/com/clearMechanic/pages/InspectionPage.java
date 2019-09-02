@@ -24,6 +24,10 @@ public class InspectionPage extends BasePage {
 	public InputControl typeInVIN = new InputControl(getAppiumDriver(), TypeInVIN.toBy());
 	public InputControl plates = new InputControl(getAppiumDriver(), Plates.toBy());
 	public ButtonControl addInspectionItemSearchField = new ButtonControl(getAppiumDriver(), AddInspectionItemSearchField.toBy());
+	public ButtonControl takePhoto = new ButtonControl(getAppiumDriver(), TakePhoto.toBy());
+	public ButtonControl clickPhoto = new ButtonControl(getAppiumDriver(), ClickPhoto.toBy());
+	public ButtonControl ok = new ButtonControl(getAppiumDriver(), OKButton.toBy());
+	public ButtonControl delete = new ButtonControl(getAppiumDriver(), DeleteButton.toBy());
 	public ButtonControl done = new ButtonControl(getAppiumDriver(), By.xpath("//*[contains(@resource-id, 'btnRightButton')]"));
 
 
@@ -67,10 +71,15 @@ public class InspectionPage extends BasePage {
 		MobileElement el = getAppiumDriver().findElement(By.xpath(String.format("//*[@text='%s']", inspectionItem)));
 		el.click();
 		done.click();
+		TestUtil.sleep(2000);
 		done.click();
 		TestUtil.sleep(3000);
 		MobileElement el1 = getAppiumDriver().findElement(By.xpath(String.format("//*[@text='%s']", inspectionItem)));
 		el1.click();
+		TestUtil.sleep(2000);
+		takePhoto.click();
+		clickPhoto.click();
+		ok.click();
 	}
 	
 	public void clickOnAddedInspectionItem() {
