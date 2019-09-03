@@ -2,6 +2,8 @@ package com.clearMechanic.core;
 
 import org.openqa.selenium.By;
 
+import com.clearMechanic.util.TestUtil;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
@@ -22,8 +24,23 @@ public class TestFramework extends MobileClient {
 		driver.findElement(locateBy).click();
 	}
 	
+	//Limit use of this
+	public void forceClick() {
+		try {
+			click();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			TestUtil.sleep(1000);
+			this.click();
+		}
+	}
+	
+	public void waitForElementClickable() {
+		TestUtil.waitforClickableElement(getAppiumDriver(), getMobileElement(), 40);
+	}
+	
 	public MobileElement getMobileElement() {
-//		waitForElementPresent(by);
+		TestUtil.waitforClickableElement(getAppiumDriver(), getLocatorBy(), 15);
 		return driver.findElement(getLocatorBy());
 	}
 	

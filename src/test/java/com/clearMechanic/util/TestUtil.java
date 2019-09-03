@@ -9,6 +9,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WrapsDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,9 +36,10 @@ public class TestUtil extends MobileClient{
 		wait.until(ExpectedConditions.elementToBeClickable(el));
 	}
 	
-//	public void waitforClickableElement(int globalWaitTime) {
-//		waitforClickableElement(getAppiumDriver(), getMobileElement(), globalWaitTime);
-//	}
+	public static void waitforClickableElement(AppiumDriver<MobileElement> driver, By by, int globalWaitTime) {
+		WebDriverWait wait = new WebDriverWait(driver, globalWaitTime);
+		wait.until(ExpectedConditions.elementToBeClickable(by));
+	}
 	
 	public static String getExcelData(String sheetName , int rowNum , int colNum) throws InvalidFormatException, IOException{
 		

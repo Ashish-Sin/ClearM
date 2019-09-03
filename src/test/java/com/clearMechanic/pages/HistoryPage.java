@@ -26,6 +26,7 @@ public class HistoryPage extends BasePage{
 	
 	public void verifyRONumberPresent(String ro) {
 		MobileElement el = getAppiumDriver().findElement(By.xpath(String.format("//*[contains(@text, 'RO #%s')]", ro)));
+		searchField.waitForElementClickable();
 		searchField.click();
 		searchField.setTextUsingAppKeyBoard(ro);
 		Assert.assertTrue(el.isDisplayed());
@@ -36,9 +37,10 @@ public class HistoryPage extends BasePage{
 	@Override
 	public void goTo() {
 		// TODO Auto-generated method stub
-			TestUtil.sleep(4000);
-			historyTab.click();
-			TestUtil.sleep(4000);
+//			TestUtil.sleep(4000);
+		historyTab.waitForElementClickable();
+		historyTab.click();
+//		TestUtil.sleep(4000);
 	}
 	
 	public void enterValueInSearchField(String searchKeyword) {

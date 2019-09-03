@@ -43,11 +43,10 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			inspectionPage.vehicleReception.click();
 
 			String vinNumber = TestUtil.getExcelData("VIN", 1, 1);
-			TestUtil.sleep(4000);
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
 			TestUtil.hideKeyboard(getAppiumDriver());
-			inspectionPage.done.click();
-			TestUtil.sleep(4000);
+//			TestUtil.sleep(5000);
+			inspectionPage.done.forceClick();
 			
 			historyPage.goTo();
 			historyPage.verifyRONumberPresent(roNumber);
@@ -65,12 +64,13 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			
 			TestUtil.sleep(4000);
 			System.out.println(getAppiumDriver());
-			TestUtil.getAppiumDriver(inspectionPage.inspectionTab.getMobileElement());
+			System.out.println(TestUtil.getAppiumDriver(inspectionPage.inspectionTab.getMobileElement()));
 			
 			inspectionPage.goTo();
-			TestUtil.sleep(4000);
+			inspectionPage.inspectionItems.waitForElementClickable();
 			inspectionPage.inspectionItems.click();
-			TestUtil.sleep(4000);
+//			TestUtil.sleep(4000);
+			inspectionPage.addInspectionItemSearchField.waitForElementClickable();
 			inspectionPage.addInspectionItemSearchField.click();
 			TestUtil.hideKeyboard(getAppiumDriver());
 			inspectionPage.addInspectionItem("\"BAT\" Terminal");

@@ -33,9 +33,10 @@ public class InspectionPage extends BasePage {
 
 	@Override
 	public void goTo() {
-		TestUtil.sleep(4000);
-		inspectionTab.click();
-		TestUtil.sleep(4000);
+//		TestUtil.sleep(4000);
+		this.inspectionTab.waitForElementClickable();
+		this.inspectionTab.click();
+//		TestUtil.sleep(4000);
 	}
 	
 	public void enterVehicleDetails(String roNumber, String vinNumber, String plates) {
@@ -45,6 +46,7 @@ public class InspectionPage extends BasePage {
 	}
 	
 	public void enterValueUsingAppKeyboard(InputControl fieldName, String fieldValue) {
+		fieldName.waitForElementClickable();
 		fieldName.click();
 		textField.setTextUsingAppKeyBoard(fieldValue);
 	}
