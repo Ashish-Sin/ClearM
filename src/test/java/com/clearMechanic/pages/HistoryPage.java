@@ -37,20 +37,18 @@ public class HistoryPage extends BasePage{
 	@Override
 	public void goTo() {
 		// TODO Auto-generated method stub
-//			TestUtil.sleep(4000);
 		historyTab.waitForElementClickable();
 		historyTab.click();
-//		TestUtil.sleep(4000);
 	}
 	
 	public void enterValueInSearchField(String searchKeyword) {
 		searchField.setText(searchKeyword);
-		TestUtil.sleep(2000);
+//		TestUtil.sleep(2000);
 	}
 	
 	public void searchAndAssertInspectionInHistory(String searchKeyword) {
 		searchField.setText(searchKeyword);
-		TestUtil.sleep(2000);
+//		TestUtil.sleep(2000);
 	}
 	
 }

@@ -28,15 +28,13 @@ public class InspectionPage extends BasePage {
 	public ButtonControl clickPhoto = new ButtonControl(getAppiumDriver(), ClickPhoto.toBy());
 	public ButtonControl ok = new ButtonControl(getAppiumDriver(), OKButton.toBy());
 	public ButtonControl delete = new ButtonControl(getAppiumDriver(), DeleteButton.toBy());
-	public ButtonControl done = new ButtonControl(getAppiumDriver(), By.xpath("//*[contains(@resource-id, 'btnRightButton')]"));
+	public ButtonControl done = new ButtonControl(getAppiumDriver(), By.id("com.clearcheck.cmbeta:Controls_CmNavBar_TextTitleText/btnRightButton"));
 
 
 	@Override
 	public void goTo() {
-//		TestUtil.sleep(4000);
 		this.inspectionTab.waitForElementClickable();
 		this.inspectionTab.click();
-//		TestUtil.sleep(4000);
 	}
 	
 	public void enterVehicleDetails(String roNumber, String vinNumber, String plates) {

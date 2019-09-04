@@ -46,7 +46,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			TestUtil.hideKeyboard(getAppiumDriver());
 //			TestUtil.sleep(5000);
 			inspectionPage.done.forceClick();
-			
+			inspectionPage.done.forceClick();
 			historyPage.goTo();
 			historyPage.verifyRONumberPresent(roNumber);
 			
