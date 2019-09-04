@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 
 import com.clearMechanic.core.BaseTestCase;
 import com.clearMechanic.pages.HistoryPage;
-import com.clearMechanic.pages.HomePage;
 import com.clearMechanic.pages.InspectionPage;
 import com.clearMechanic.pages.LogInPage;
 import com.clearMechanic.util.TestUtil;
@@ -18,9 +17,9 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	private InspectionPage inspectionPage;
 	private HistoryPage historyPage;
 
-	@Factory(dataProvider = "listDevices")
-	public LoginIntoClearMechanic(String udid, int port) {
-		super(udid, port);
+//	@Factory(dataProvider = "listDevices")
+	public LoginIntoClearMechanic() {
+		super("", 0);
 
 	}
 

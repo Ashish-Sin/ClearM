@@ -24,7 +24,7 @@ import com.clearMechanic.util.FileReader;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 
 public class BaseTestCase extends MobileClient{
 
@@ -45,7 +45,7 @@ public class BaseTestCase extends MobileClient{
 			port = Integer.parseInt(FileReader.readData("Port"));
 		String host = FileReader.readData("Host");
 		try {
-			driver = new AndroidDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"), getDesiredCapabilities(this.getAppAbsoultePath(), this.getAndroidVersion()));
+			driver = new AppiumDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"), getDesiredCapabilities(this.getAppAbsoultePath(), ""));
 
 		} catch (Exception e) {
 			logger.debug("appium server not stated");
@@ -78,6 +78,10 @@ public class BaseTestCase extends MobileClient{
 	public String getAndroidVersion() {
 		return FileReader.readData("AndroidVersion");
 	}
+	
+	public String getOS() {
+		return FileReader.readData("OSVersion");
+	}
 
 	/**
 	 * @author Setup configuration in DesiredCapabilities which appium used to run test
@@ -86,16 +90,30 @@ public class BaseTestCase extends MobileClient{
 	 */
 	public DesiredCapabilities getDesiredCapabilities(String appPath, String androidVersion) throws Exception {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
-		capabilities.setCapability("platformName", "Android");
-		capabilities.setCapability("deviceName", "Appium");
-		capabilities.setCapability("platformVersion", androidVersion);
-		capabilities.setCapability("appPackage", "com.clearcheck.cmbeta");
-		capabilities.setCapability("appActivity", "md5e047583c9ad193c8c022c6c9ad74d95b.HostActivity");
-//		capabilities.setCapability("app", appPath);
-		capabilities.setCapability("autoGrantPermissions", "true");
-		if (StringUtils.isNoneBlank(udid)) {
-			capabilities.setCapability("udid", udid);
+		
+		if(getOS()=="Android") {
+			capabilities.setCapability("platformName", "Android");
+			capabilities.setCapability("deviceName", "Appium");
+			capabilities.setCapability("platformVersion", androidVersion);
+			capabilities.setCapability("appPackage", "com.clearcheck.cmbeta");
+			capabilities.setCapability("appActivity", "md5e047583c9ad193c8c022c6c9ad74d95b.HostActivity");
+//			capabilities.setCapability("app", appPath);
+			capabilities.setCapability("autoGrantPermissions", "true");
+			if (StringUtils.isNoneBlank(udid)) {
+				capabilities.setCapability("udid", udid);
+			}
 		}
+		
+		capabilities.setCapability("platformName", "iOS");
+		capabilities.setCapability("deviceName", "Imac360'siPhone");
+		capabilities.setCapability("udid", "b30234dc24fbb929b400156cb66ca08f176e2f99");
+		capabilities.setCapability("platformVersion", "12.4");
+		capabilities.setCapability("bundleId", "com.clearcheck.cmbeta");
+		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
+		capabilities.setCapability("agentPath", "/usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent/WebDriverAgent.xcodeproj");
+		capabilities.setCapability("bootstrapPath", "/usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent");
+		
+//		capabilities.setCapability("autoGrantPermissions", "true");
 
 		return capabilities;
 	}
