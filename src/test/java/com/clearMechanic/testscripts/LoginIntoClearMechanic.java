@@ -41,12 +41,11 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			inspectionPage.goTo();
 			inspectionPage.vehicleReception.click();
 
-			String vinNumber = TestUtil.getExcelData("VIN", 1, 1);
+			String vinNumber = TestUtil.getExcelData("VIN", 1, 0);
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
 			TestUtil.hideKeyboard(getAppiumDriver());
-//			TestUtil.sleep(5000);
-			inspectionPage.done.forceClick();
-			inspectionPage.done.forceClick();
+			inspectionPage.done.click();
+			inspectionPage.done.click();
 			historyPage.goTo();
 			historyPage.verifyRONumberPresent(roNumber);
 			
@@ -60,15 +59,10 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	public void cameraTestCase() throws Exception {
 		
 		try {
-			
-			TestUtil.sleep(4000);
-			System.out.println(getAppiumDriver());
-			System.out.println(TestUtil.getAppiumDriver(inspectionPage.inspectionTab.getMobileElement()));
-			
+		
 			inspectionPage.goTo();
 			inspectionPage.inspectionItems.waitForElementClickable();
 			inspectionPage.inspectionItems.click();
-//			TestUtil.sleep(4000);
 			inspectionPage.addInspectionItemSearchField.waitForElementClickable();
 			inspectionPage.addInspectionItemSearchField.click();
 			TestUtil.hideKeyboard(getAppiumDriver());

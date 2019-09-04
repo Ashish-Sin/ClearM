@@ -43,12 +43,10 @@ public class HistoryPage extends BasePage{
 	
 	public void enterValueInSearchField(String searchKeyword) {
 		searchField.setText(searchKeyword);
-//		TestUtil.sleep(2000);
 	}
 	
 	public void searchAndAssertInspectionInHistory(String searchKeyword) {
 		searchField.setText(searchKeyword);
-//		TestUtil.sleep(2000);
 	}
 	
 }

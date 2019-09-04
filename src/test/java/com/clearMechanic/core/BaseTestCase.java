@@ -91,7 +91,7 @@ public class BaseTestCase extends MobileClient{
 	public DesiredCapabilities getDesiredCapabilities(String appPath, String androidVersion) throws Exception {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		
-		if(getOS()=="Android") {
+		if(getOS().equals("Android")) {
 			capabilities.setCapability("platformName", "Android");
 			capabilities.setCapability("deviceName", "Appium");
 			capabilities.setCapability("platformVersion", androidVersion);
@@ -102,18 +102,20 @@ public class BaseTestCase extends MobileClient{
 			if (StringUtils.isNoneBlank(udid)) {
 				capabilities.setCapability("udid", udid);
 			}
+		} else {
+			capabilities.setCapability("platformName", "iOS");
+			capabilities.setCapability("deviceName", "Imac360'siPhone");
+			capabilities.setCapability("udid", "b30234dc24fbb929b400156cb66ca08f176e2f99");
+			capabilities.setCapability("platformVersion", "12.4");
+			capabilities.setCapability("bundleId", "com.clearcheck.cmbeta");
+			capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
+			capabilities.setCapability("agentPath", "/usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent/WebDriverAgent.xcodeproj");
+			capabilities.setCapability("bootstrapPath", "/usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent");
+			
+//			capabilities.setCapability("autoGrantPermissions", "true");
 		}
 		
-		capabilities.setCapability("platformName", "iOS");
-		capabilities.setCapability("deviceName", "Imac360'siPhone");
-		capabilities.setCapability("udid", "b30234dc24fbb929b400156cb66ca08f176e2f99");
-		capabilities.setCapability("platformVersion", "12.4");
-		capabilities.setCapability("bundleId", "com.clearcheck.cmbeta");
-		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
-		capabilities.setCapability("agentPath", "/usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent/WebDriverAgent.xcodeproj");
-		capabilities.setCapability("bootstrapPath", "/usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent");
 		
-//		capabilities.setCapability("autoGrantPermissions", "true");
 
 		return capabilities;
 	}
