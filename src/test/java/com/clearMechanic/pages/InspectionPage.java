@@ -67,20 +67,15 @@ public class InspectionPage extends BasePage {
 	}
 	
 	public void addInspectionItem(String inspectionItem) {
-//		TestUtil.sleep(30000);
-//		TestUtil.waitforClickableElement(driver, getAppiumDriver().findElement(By.xpath("com.clearcheck.cmbeta:SearchBar/pnlContainer")), 40);
-		getAppiumDriver().findElement(By.xpath("com.clearcheck.cmbeta:SearchBar/pnlContainer")).click();
-		TestUtil.waitforClickableElement(driver, getAppiumDriver().findElement(By.xpath("com.clearcheck.cmbeta:SearchBar/pnlContainer")), 40);
-		MobileElement el = getAppiumDriver().findElement(By.xpath(String.format("//*[@text='%s']", inspectionItem)));
+		By by = By.xpath(String.format("//*[@text='%s']", inspectionItem));
+		TestUtil.waitforClickableElement(driver, by, 40);
+		MobileElement el = getAppiumDriver().findElement(by);
 		
 		el.click();
 		done.click();
-//		TestUtil.sleep(2000);
 		done.click();
-//		TestUtil.sleep(3000);
 		MobileElement el1 = getAppiumDriver().findElement(By.xpath(String.format("//*[@text='%s']", inspectionItem)));
 		el1.click();
-//		TestUtil.sleep(2000);
 		takePhoto.waitForElementClickable();
 		takePhoto.click();
 		clickPhoto.click();

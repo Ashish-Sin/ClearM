@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 public enum History implements ILocator {
 
 	HistoryTab(By.id("com.clearcheck.cmbeta:MainView/tbHistory")),
-	SearchField(By.xpath("//*[contains(@resource-id, 'txtSearchFilter')]"));
+	SearchBYRONumber(By.xpath("//*[contains(@resource-id, 'txtSearchFilter')]"));
 	
 	private final By locator;
 
