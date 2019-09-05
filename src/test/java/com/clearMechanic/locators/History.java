@@ -2,10 +2,12 @@ package com.clearMechanic.locators;
 
 import org.openqa.selenium.By;
 
+import io.appium.java_client.MobileBy;
+
 public enum History implements ILocator {
 
-	HistoryTab(By.id("com.clearcheck.cmbeta:MainView/tbHistory")),
-	SearchField(By.xpath("//*[contains(@resource-id, 'txtSearchFilter')]"));
+	HistoryTab(MobileBy.AccessibilityId("History")),
+	SearchByRONumber(MobileBy.AccessibilityId("Search by RO number"));
 	
 	private final By locator;
 

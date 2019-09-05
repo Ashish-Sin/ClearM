@@ -67,7 +67,7 @@ public class TestUtil extends MobileClient{
 	}
 	
 	public static String getPath() {
-		return System.getProperty("user.dir") + "\\src\\test\\java\\com\\clearMechanic\\data\\";
+		return System.getProperty("user.dir") + "//src//test//java//com//clearMechanic//data//";
 	}
 	
 	private static File getLatestFilefromDir(String dirPath) {

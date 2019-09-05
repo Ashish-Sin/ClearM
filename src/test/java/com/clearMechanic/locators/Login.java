@@ -2,17 +2,18 @@ package com.clearMechanic.locators;
 
 import org.openqa.selenium.By;
 
+import io.appium.java_client.MobileBy;
+
 public enum Login implements ILocator{
 	
-	Login(By.xpath("//*[@text = 'Tap Screen to Log In']")),
-	DealerOrShopName(By.xpath("//*[@text = 'Dealer or Shop Name']")),
-	Email(By.xpath("//*[contains(@resource-id, 'inputEmail')]")),
-//	Email(By.xpath("//*[contains(@resource-id, 'com.clearcheck.cmbeta:Controls_CmRowTextInput_TextCheckmark/txtTextInput')]")),
-	Password(By.xpath("//*[contains(@resource-id, 'inputPassword')]")),
-	LoginButton(By.xpath("//*[contains(@resource-id, 'btnLogIn')]")),
-	BackButton(By.xpath("//*[contains(@resource-id, 'btnLeftButton') and text()='Back']")),
-	ForgotPassword(By.xpath("//*[contains(@resource-id, 'btnForgotPassword')]"));
-	
+	Login(MobileBy.AccessibilityId("Tap Screen to Log In")),
+	DealerOrShopName(MobileBy.ByAccessibilityId.xpath("//*[@value = 'Dealer or Shop Name']")),
+	Email(MobileBy.ByAccessibilityId.xpath("//*[@value = 'E-mail']")),
+	Password(MobileBy.ByAccessibilityId.xpath("//*[@value = 'Password']")),
+	LoginButton(MobileBy.AccessibilityId("Log In!")),
+//	BackButton(By.xpath("//*[contains(@resource-id, 'btnLeftButton') and text()='Back']")),
+//	ForgotPassword(By.xpath("//*[contains(@resource-id, 'btnForgotPassword')]"));
+	;
 
 
 	

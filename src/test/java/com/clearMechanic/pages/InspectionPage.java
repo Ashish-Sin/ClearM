@@ -8,6 +8,7 @@ import com.clearMechanic.core.InputControl;
 import com.clearMechanic.util.TestUtil;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 
 public class InspectionPage extends BasePage {
@@ -28,7 +29,7 @@ public class InspectionPage extends BasePage {
 	public ButtonControl clickPhoto = new ButtonControl(getAppiumDriver(), ClickPhoto.toBy());
 	public ButtonControl ok = new ButtonControl(getAppiumDriver(), OKButton.toBy());
 	public ButtonControl delete = new ButtonControl(getAppiumDriver(), DeleteButton.toBy());
-	public ButtonControl done = new ButtonControl(getAppiumDriver(), By.id("com.clearcheck.cmbeta:Controls_CmNavBar_TextTitleText/btnRightButton"));
+	public ButtonControl done = new ButtonControl(getAppiumDriver(), MobileBy.AccessibilityId("Done"));
 
 
 	@Override
@@ -43,6 +44,7 @@ public class InspectionPage extends BasePage {
 		enterPlatesInVehicleDetails(plates);
 	}
 	
+	//this method is currently not working for iOS
 	public void enterValueUsingAppKeyboard(InputControl fieldName, String fieldValue) {
 		fieldName.waitForElementClickable();
 		fieldName.click();
@@ -55,7 +57,7 @@ public class InspectionPage extends BasePage {
 	}
 
 	public void enterRoNumberInVehicleDetails(String fieldValue) {
-		enterValueUsingAppKeyboard(ro, fieldValue);
+		enterValue(ro, fieldValue);
 	}
 
 	public void typeVinNumberInVehicleDetails(String fieldValue) {
@@ -67,20 +69,13 @@ public class InspectionPage extends BasePage {
 	}
 	
 	public void addInspectionItem(String inspectionItem) {
-//		TestUtil.sleep(30000);
-//		TestUtil.waitforClickableElement(driver, getAppiumDriver().findElement(By.xpath("com.clearcheck.cmbeta:SearchBar/pnlContainer")), 40);
-		getAppiumDriver().findElement(By.xpath("com.clearcheck.cmbeta:SearchBar/pnlContainer")).click();
-		TestUtil.waitforClickableElement(driver, getAppiumDriver().findElement(By.xpath("com.clearcheck.cmbeta:SearchBar/pnlContainer")), 40);
-		MobileElement el = getAppiumDriver().findElement(By.xpath(String.format("//*[@text='%s']", inspectionItem)));
-		
+		TestUtil.sleep(30000);
+		MobileElement el = getAppiumDriver().findElement(By.xpath(String.format("//*[@value='%s']", inspectionItem)));
 		el.click();
 		done.click();
-//		TestUtil.sleep(2000);
 		done.click();
-//		TestUtil.sleep(3000);
-		MobileElement el1 = getAppiumDriver().findElement(By.xpath(String.format("//*[@text='%s']", inspectionItem)));
+		MobileElement el1 = getAppiumDriver().findElement(By.xpath(String.format("//*[@value='%s']", inspectionItem)));
 		el1.click();
-//		TestUtil.sleep(2000);
 		takePhoto.waitForElementClickable();
 		takePhoto.click();
 		clickPhoto.click();

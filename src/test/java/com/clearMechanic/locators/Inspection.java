@@ -1,20 +1,22 @@
 package com.clearMechanic.locators;
 
 import org.openqa.selenium.By;
+import io.appium.java_client.MobileBy;
 
 public enum Inspection implements ILocator {
-	InspectionTab(By.id("com.clearcheck.cmbeta:MainView/tbInspection")),
-	VehicleReception(By.id("com.clearcheck.cmbeta:Views_Main_Tabs_InspectionFull/lblRepairNumberHeader")),
-	InspectionItems(By.xpath("//*[contains(@resource-id, 'lblInspectionItemsHeader')]")),
-	RO(By.xpath("//*[contains(@resource-id, 'lblCaption') and contains(@text, 'RO')]")),
-	Plates(By.xpath("//*[contains(@resource-id, 'lblCaption') and contains(@text, 'Plates')]")),
-	TextField(By.id("com.clearcheck.cmbeta:Controls_CmRow_VehicleReceptionInput/etTextInput")),
-	AddInspectionItemSearchField(By.xpath("//*[contains(@resource-id, 'txtSearchPlaceholder')]")),
-	TypeInVIN(By.xpath("//*[contains(@resource-id, 'lblCaption') and contains(@text, 'Type in VIN')]")),
-	TakePhoto(By.id("com.clearcheck.cmbeta:Views_Inspection_InspectionItemDetails/btnTakePhoto")),
-	ClickPhoto(By.id("com.clearcheck.cmbeta:Controls_CmOvalView/rlRoot")),
-	OKButton(By.id("com.clearcheck.cmbeta:Views_NewRepairOrder_MediaFiles_EditPhoto/btnOK")),
-	DeleteButton(By.id("com.clearcheck.cmbeta:Views_NewRepairOrder_MediaFiles_EditPhoto/btnDelete"));
+	InspectionTab(MobileBy.AccessibilityId("Inspection")),
+	VehicleReception(MobileBy.AccessibilityId("Vehicle Reception")),
+	InspectionItems(MobileBy.AccessibilityId("Inspection Items")),
+	RO(MobileBy.AccessibilityId("RO")),
+	Plates(MobileBy.AccessibilityId("Plates")),
+	TextField(MobileBy.ByAccessibilityId.xpath("//*[@type='XCUIElementTypeTextField']")),
+	AddInspectionItemSearchField(MobileBy.AccessibilityId("Add inspection item")),
+	TypeInVIN(MobileBy.AccessibilityId("Type in VIN")),
+	TakePhoto(MobileBy.AccessibilityId("Take Photo")),
+	ClickPhoto(By.xpath("//*[contains(@name, 'camera_icon')]")),
+	OKButton(By.xpath("//*[contains(@name, 'apply')]")),
+	DeleteButton(By.xpath("//*[contains(@name, 'camera_close')]"));
+	
 	private final By locator;
 
 	Inspection(By locator) {

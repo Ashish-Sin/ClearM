@@ -1,11 +1,6 @@
 package com.clearMechanic.pages;
 
-import static com.clearMechanic.locators.Login.DealerOrShopName;
-import static com.clearMechanic.locators.Login.Email;
-import static com.clearMechanic.locators.Login.Login;
-import static com.clearMechanic.locators.Login.LoginButton;
-import static com.clearMechanic.locators.Login.Password;
-import static com.clearMechanic.locators.Login.ForgotPassword;
+import static com.clearMechanic.locators.Login.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,10 +28,9 @@ public class LogInPage extends BasePage {
 	public InputControl email = new InputControl(getAppiumDriver(), Email.toBy());
 	public InputControl password = new InputControl(getAppiumDriver(), Password.toBy());
 	public ButtonControl loginButton = new ButtonControl(getAppiumDriver(), LoginButton.toBy());
-	public ButtonControl forgotPassword = new ButtonControl(getAppiumDriver(), ForgotPassword.toBy());
+//	public ButtonControl forgotPassword = new ButtonControl(getAppiumDriver(), ForgotPassword.toBy());
 
 	public void goTo() {
-		
 		tapToLogin.click();
 	}
 

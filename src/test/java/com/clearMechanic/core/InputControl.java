@@ -24,6 +24,7 @@ public class InputControl extends TestFramework {
 		return element;
 	}
 
+	@Deprecated  //Only for Android
 	public void setTextUsingAppKeyBoard(String text) {
 
 		char[] t = text.toCharArray();

@@ -29,7 +29,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 		loginPage = new LogInPage(getAppiumDriver());
 		inspectionPage = new InspectionPage(getAppiumDriver());
 		historyPage = new HistoryPage(getAppiumDriver());
-		loginPage.logintoApp();
+//		loginPage.logintoApp();
 	}
 
 	@Test
@@ -44,7 +44,6 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			String vinNumber = TestUtil.getExcelData("VIN", 1, 0);
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
 			TestUtil.hideKeyboard(getAppiumDriver());
-			inspectionPage.done.click();
 			inspectionPage.done.click();
 			historyPage.goTo();
 			historyPage.verifyRONumberPresent(roNumber);

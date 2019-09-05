@@ -21,14 +21,14 @@ public class HistoryPage extends BasePage{
 	
 	public InputControl textField = new InputControl(getAppiumDriver(), TextField.toBy());
 	public ButtonControl historyTab = new ButtonControl(getAppiumDriver(), HistoryTab.toBy());
-	public InputControl searchField = new InputControl(getAppiumDriver(), SearchField.toBy());
+	public InputControl searchByRONumber = new InputControl(getAppiumDriver(), SearchByRONumber.toBy());
 	
 	
 	public void verifyRONumberPresent(String ro) {
-		MobileElement el = getAppiumDriver().findElement(By.xpath(String.format("//*[contains(@text, 'RO #%s')]", ro)));
-		searchField.waitForElementClickable();
-		searchField.click();
-		searchField.setTextUsingAppKeyBoard(ro);
+		MobileElement el = getAppiumDriver().findElement(By.xpath(String.format("//*[contains(@value, 'RO #%s')]", ro)));
+		searchByRONumber.waitForElementClickable();
+		searchByRONumber.click();
+		searchByRONumber.setText(ro);
 		Assert.assertTrue(el.isDisplayed());
 	}
 	
@@ -39,14 +39,6 @@ public class HistoryPage extends BasePage{
 		// TODO Auto-generated method stub
 		historyTab.waitForElementClickable();
 		historyTab.click();
-	}
-	
-	public void enterValueInSearchField(String searchKeyword) {
-		searchField.setText(searchKeyword);
-	}
-	
-	public void searchAndAssertInspectionInHistory(String searchKeyword) {
-		searchField.setText(searchKeyword);
 	}
 	
 }
