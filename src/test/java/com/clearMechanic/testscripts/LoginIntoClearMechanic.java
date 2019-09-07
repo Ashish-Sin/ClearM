@@ -9,6 +9,7 @@ import com.clearMechanic.core.BaseTestCase;
 import com.clearMechanic.pages.HistoryPage;
 import com.clearMechanic.pages.InspectionPage;
 import com.clearMechanic.pages.LogInPage;
+import com.clearMechanic.util.ConsoleLog;
 import com.clearMechanic.util.TestUtil;
 
 public class LoginIntoClearMechanic extends BaseTestCase {
@@ -25,6 +26,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 
 	@BeforeMethod
 	public void LaunchApp() throws Exception {
+		ConsoleLog.log("ashish");
 		setUp();
 		loginPage = new LogInPage(getAppiumDriver());
 		inspectionPage = new InspectionPage(getAppiumDriver());
