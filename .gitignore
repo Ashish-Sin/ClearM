@@ -1,6 +1,5 @@
 /test-output/
+/bin/
 *.html
 *.xml
-*.class
-
 *.class
