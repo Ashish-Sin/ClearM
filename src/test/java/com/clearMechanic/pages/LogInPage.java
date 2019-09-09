@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.clearMechanic.core.ButtonControl;
 import com.clearMechanic.core.InputControl;
+import com.clearMechanic.util.ConsoleLog;
 import com.clearMechanic.util.FileReader;
 
 import io.appium.java_client.AppiumDriver;
@@ -38,6 +39,7 @@ public class LogInPage extends BasePage {
 	public void goTo() {
 		
 		tapToLogin.click();
+		ConsoleLog.log("Click on login button");
 	}
 
 	private void enterDetails() throws Exception {
@@ -50,6 +52,7 @@ public class LogInPage extends BasePage {
 		this.goTo();
 		enterDetails();
 		loginButton.click();
+		ConsoleLog.log("Login to Application");
 	}
 
 }

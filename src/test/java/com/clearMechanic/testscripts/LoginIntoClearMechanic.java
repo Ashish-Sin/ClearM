@@ -26,7 +26,6 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 
 	@BeforeMethod
 	public void LaunchApp() throws Exception {
-		ConsoleLog.log("ashish");
 		setUp();
 		loginPage = new LogInPage(getAppiumDriver());
 		inspectionPage = new InspectionPage(getAppiumDriver());
@@ -42,12 +41,15 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 
 			inspectionPage.goTo();
 			inspectionPage.vehicleReception.click();
+			ConsoleLog.log("Click on vehicle reception");
 
 			String vinNumber = TestUtil.getExcelData("VIN", 1, 0);
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
 			TestUtil.hideKeyboard(getAppiumDriver());
 			inspectionPage.done.click();
 			inspectionPage.done.click();
+			ConsoleLog.log("Click on vehicle reception");
+			
 			historyPage.goTo();
 			historyPage.verifyRONumberPresent(roNumber);
 			
@@ -63,7 +65,6 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 		try {
 		
 			inspectionPage.goTo();
-			inspectionPage.inspectionItems.waitForElementClickable();
 			inspectionPage.inspectionItems.click();
 			inspectionPage.addInspectionItemSearchField.waitForElementClickable();
 			inspectionPage.addInspectionItemSearchField.click();

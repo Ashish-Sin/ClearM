@@ -9,19 +9,24 @@ import org.testng.Reporter;
 
 public class ConsoleLog {
 
-	static Logger LOGGER;
+	public static Logger LOGGER;
+
+	static {
+
+		InputStream stream = ConsoleLog.class.getClassLoader().getResourceAsStream("logging.properties");
+		try {
+			LogManager.getLogManager().readConfiguration(stream);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		LOGGER = Logger.getLogger(ConsoleLog.class.getName());
+	}
 
 	public static void log(String str) {
 		try {
 
-			InputStream stream = ConsoleLog.class.getClassLoader().getResourceAsStream("logging.properties");
-			try {
-				LogManager.getLogManager().readConfiguration(stream);
-				LOGGER = Logger.getLogger(ConsoleLog.class.getName());
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 			LOGGER.info(str);
 			Reporter.log(str);
 		} catch (Exception e) {
