@@ -15,11 +15,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 
+import com.clearMechanic.util.ConsoleLog;
 import com.clearMechanic.util.FileReader;
 
 import io.appium.java_client.AppiumDriver;
@@ -29,8 +28,6 @@ import io.appium.java_client.remote.MobileCapabilityType;
 public class BaseTestCase extends MobileClient{
 
 	public AppiumDriver<MobileElement> driver;
-	private static final Logger logger = LoggerFactory.getLogger(BaseTestCase.class);
-	protected int timeOut = 20;
 	private int port = 0;
 	private final String udid;
 	
@@ -40,6 +37,8 @@ public class BaseTestCase extends MobileClient{
 	}
 
 	public void setUp() throws Exception {
+		ConsoleLog.LOGGER.toString();         // instantiating static block of ConsoleLog
+		ConsoleLog.log("Launching Application......");
 		// setup port
 		if (port == 0)
 			port = Integer.parseInt(FileReader.readData("Port"));
@@ -48,10 +47,9 @@ public class BaseTestCase extends MobileClient{
 			driver = new AppiumDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"), getDesiredCapabilities(this.getAppAbsoultePath(), ""));
 
 		} catch (Exception e) {
-			logger.debug("appium server not stated");
+			ConsoleLog.log("appium server not stated");
 			throw new Exception(e);
 		}
-//		driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
 //		setTheAppiumDriver(driver);
 		setAppiumDriver(driver);
 	}
@@ -158,7 +156,7 @@ public class BaseTestCase extends MobileClient{
 			}
 
 		} catch (IOException e) {
-			logger.debug("adb command not executed to capture devices");
+			ConsoleLog.log("adb command not executed to capture devices");
 		}
 		return devicesID;
 	}

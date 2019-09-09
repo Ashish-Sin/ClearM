@@ -86,9 +86,10 @@ public class TestUtil extends MobileClient{
 		return lastModifiedFile;
 	}
 	
-	public static void sleep(long time) {
+	public static void sleep(long time, String reason) {
 		try {
 			Thread.sleep(time);
+			ConsoleLog.log(reason);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,6 +133,8 @@ public class TestUtil extends MobileClient{
 //
 	public static void hideKeyboard(AppiumDriver<MobileElement> driver) {
 		driver.hideKeyboard();
+		ConsoleLog.log("Hide Keyboard");
+		sleep(1000, "Wait till keyboard is hidden");
 	}
 //
 //	public void clickOn(By by) {

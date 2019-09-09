@@ -21,7 +21,7 @@ public class TestFramework extends MobileClient {
 	}
 	
 	public void click() {
-		driver.findElement(locateBy).click();
+		this.getMobileElement().click();
 	}
 	
 	//Limit use of this
@@ -30,7 +30,7 @@ public class TestFramework extends MobileClient {
 			click();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			TestUtil.sleep(1000);
+//			TestUtil.sleep(1000);
 			this.click();
 		}
 	}
@@ -41,7 +41,7 @@ public class TestFramework extends MobileClient {
 	
 	public MobileElement getMobileElement() {
 		TestUtil.waitforClickableElement(getAppiumDriver(), getLocatorBy(), 15);
-		return driver.findElement(getLocatorBy());
+		return getAppiumDriver().findElement(getLocatorBy());
 	}
 	
 }
