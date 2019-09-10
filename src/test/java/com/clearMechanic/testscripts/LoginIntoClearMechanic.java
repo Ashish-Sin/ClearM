@@ -47,8 +47,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
 			TestUtil.hideKeyboard(getAppiumDriver());
 			inspectionPage.done.click();
-			inspectionPage.done.click();
-			ConsoleLog.log("Click on vehicle reception");
+			ConsoleLog.log("Click on done");
 			
 			historyPage.goTo();
 			historyPage.verifyRONumberPresent(roNumber);
