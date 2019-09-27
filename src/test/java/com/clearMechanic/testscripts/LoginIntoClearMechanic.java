@@ -1,5 +1,6 @@
 package com.clearMechanic.testscripts;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Factory;
@@ -9,6 +10,7 @@ import com.clearMechanic.core.BaseTestCase;
 import com.clearMechanic.pages.HistoryPage;
 import com.clearMechanic.pages.InspectionPage;
 import com.clearMechanic.pages.LogInPage;
+import com.clearMechanic.util.ConsoleLog;
 import com.clearMechanic.util.TestUtil;
 
 public class LoginIntoClearMechanic extends BaseTestCase {
@@ -40,11 +42,14 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 
 			inspectionPage.goTo();
 			inspectionPage.vehicleReception.click();
+			ConsoleLog.log("Click on vehicle reception");
 
 			String vinNumber = TestUtil.getExcelData("VIN", 1, 0);
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
 			TestUtil.hideKeyboard(getAppiumDriver());
 			inspectionPage.done.click();
+			ConsoleLog.log("Click on done");
+			
 			historyPage.goTo();
 			historyPage.verifyRONumberPresent(roNumber);
 			
@@ -60,12 +65,16 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 		try {
 		
 			inspectionPage.goTo();
-			inspectionPage.inspectionItems.waitForElementClickable();
 			inspectionPage.inspectionItems.click();
 			inspectionPage.addInspectionItemSearchField.waitForElementClickable();
 			inspectionPage.addInspectionItemSearchField.click();
 			TestUtil.hideKeyboard(getAppiumDriver());
 			inspectionPage.addInspectionItem("\"BAT\" Terminal");
+			
+			inspectionPage.firstPhoto.click();
+			inspectionPage.addArrow.click();
+			Assert.assertTrue(inspectionPage.arrow.getMobileElement().isDisplayed());
+			ConsoleLog.log("Verified that photo is visible and arrow is added");
 			
 		} catch (Exception e) {
 			captureScreenshot("cameraTestCase");
