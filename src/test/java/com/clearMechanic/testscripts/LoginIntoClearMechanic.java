@@ -1,5 +1,6 @@
 package com.clearMechanic.testscripts;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Factory;
@@ -70,6 +71,11 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			inspectionPage.addInspectionItemSearchField.click();
 			TestUtil.hideKeyboard(getAppiumDriver());
 			inspectionPage.addInspectionItem("\"BAT\" Terminal");
+			
+			inspectionPage.firstPhoto.click();
+			inspectionPage.addArrow.click();
+			Assert.assertTrue(inspectionPage.arrow.getMobileElement().isDisplayed());
+			ConsoleLog.log("Verified that photo is visible and arrow is added");
 			
 		} catch (Exception e) {
 			captureScreenshot("cameraTestCase");

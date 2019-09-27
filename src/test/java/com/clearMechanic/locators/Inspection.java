@@ -14,7 +14,12 @@ public enum Inspection implements ILocator {
 	TakePhoto(By.id("com.clearcheck.cmbeta:Views_Inspection_InspectionItemDetails/btnTakePhoto")),
 	ClickPhoto(By.id("com.clearcheck.cmbeta:Controls_CmOvalView/rlRoot")),
 	OKButton(By.id("com.clearcheck.cmbeta:Views_NewRepairOrder_MediaFiles_EditPhoto/btnOK")),
-	DeleteButton(By.id("com.clearcheck.cmbeta:Views_NewRepairOrder_MediaFiles_EditPhoto/btnDelete"));
+	DeleteButton(By.id("com.clearcheck.cmbeta:Views_NewRepairOrder_MediaFiles_EditPhoto/btnDelete")),
+	FirstPhoto(By.id("com.clearcheck.cmbeta:Views_Inspection_InspectionItemDetails_MediaFileItemTemplate/llRoot")),
+	CloseCamera(By.xpath("//*[contains(@name, 'camera_close_icon')]")),
+	Arrow(By.xpath("//XCUIElementTypeImage[contains(@name, '.jpg')]/following-sibling::XCUIElementTypeOther")),
+	AddArrow(By.xpath("//*[contains(@name, 'arrow_overlay.png')]"));
+	
 	private final By locator;
 
 	Inspection(By locator) {
