@@ -74,7 +74,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			
 			inspectionPage.firstPhoto.click();
 			inspectionPage.addArrow.click();
-			Assert.assertTrue(inspectionPage.arrow.getMobileElement().isDisplayed());
+			Assert.assertTrue(inspectionPage.figure.getMobileElement().isDisplayed());
 			ConsoleLog.log("Verified that photo is visible and arrow is added");
 			
 		} catch (Exception e) {
@@ -83,7 +83,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 		}
 	}
 
-//	@AfterMethod
+	@AfterMethod
 	public void quiteApp() throws Exception {
 		destroyAppSession();
 	}
