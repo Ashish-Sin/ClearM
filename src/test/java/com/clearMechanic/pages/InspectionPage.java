@@ -25,10 +25,14 @@ public class InspectionPage extends BasePage {
 	public InputControl plates = new InputControl(getAppiumDriver(), Plates.toBy());
 	public ButtonControl addInspectionItemSearchField = new ButtonControl(getAppiumDriver(), AddInspectionItemSearchField.toBy());
 	public ButtonControl takePhoto = new ButtonControl(getAppiumDriver(), TakePhoto.toBy());
+	public ButtonControl firstPhoto = new ButtonControl(getAppiumDriver(), FirstPhoto.toBy());
 	public ButtonControl clickPhoto = new ButtonControl(getAppiumDriver(), ClickPhoto.toBy());
+	public ButtonControl closeCamera = new ButtonControl(getAppiumDriver(), CloseCamera.toBy());
 	public ButtonControl ok = new ButtonControl(getAppiumDriver(), OKButton.toBy());
 	public ButtonControl delete = new ButtonControl(getAppiumDriver(), DeleteButton.toBy());
 	public ButtonControl done = new ButtonControl(getAppiumDriver(), By.id("com.clearcheck.cmbeta:Controls_CmNavBar_TextTitleText/btnRightButton"));
+	public ButtonControl figure = new ButtonControl(getAppiumDriver(), Figure.toBy()); 
+	public ButtonControl addArrow = new ButtonControl(getAppiumDriver(), AddArrow.toBy());
 
 
 	@Override
@@ -68,7 +72,7 @@ public class InspectionPage extends BasePage {
 	
 	public void addInspectionItem(String inspectionItem) {
 		By by = By.xpath(String.format("//*[@text='%s']", inspectionItem));
-		TestUtil.waitforClickableElement(driver, by, 40);
+		TestUtil.waitforClickableElement(driver, by, 60);
 		MobileElement el = getAppiumDriver().findElement(by);
 		
 		el.click();
@@ -80,6 +84,12 @@ public class InspectionPage extends BasePage {
 		takePhoto.click();
 		clickPhoto.click();
 		ok.click();
+		closeCamera.waitForElementClickable();
+		closeCamera.click();
+	}
+	
+	public void verifyPhoto() {
+		firstPhoto.click();
 	}
 	
 	public void clickOnAddedInspectionItem() {
