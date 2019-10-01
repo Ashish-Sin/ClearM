@@ -11,17 +11,25 @@ public class InputControl extends TestFramework {
 		super(driver, by);
 	}
 
-	public MobileElement setText(String text) {
+	public void setText(String text) {
 		MobileElement element = getMobileElement();
 		element.clear();
 		element.sendKeys(text);
-		return element;
 	}
 
-	public MobileElement appendText(String text) {
+	public void clearText(String text) {
+		MobileElement element = getMobileElement();
+		element.clear();
+	}
+	
+	public void appendText(String text) {
 		MobileElement element = getMobileElement();
 		element.sendKeys(text);
-		return element;
+	}
+	
+	public String getValue() {
+		return getMobileElement().getAttribute("value");
+		
 	}
 
 	public void setTextUsingAppKeyBoard(String text) {
