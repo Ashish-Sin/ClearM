@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="basic automation for demo" verbose="3" parallel="none" thread-count="2">
+
+	<test name="demo features" preserve-order="true">
+		<classes>
+			<class name="com.clearMechanic.testscripts.LoginIntoClearMechanic">
+				<methods>
+
+					<include name="testEnterAndVerifyVehicleDetails" />
+					<include name="cameraTestCase" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite>
