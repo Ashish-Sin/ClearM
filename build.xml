@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project [
+]>
+
+<project name="CM" basedir=".">
+
+	<!-- ========== Initialize Properties =================================== -->
+	<property environment="env" />
+	<property name="testng.testrun.listeners" value="com.library.Utils.TestNGCustomReportListener" />
+
+	<target name="setClassPath" unless="test.classpath">
+		<condition property="ws.home" value="${basedir}" else=".">
+			<os family="windows" />
+		</condition>
+
+		<path id="classpath_jars">
+			<fileset dir="${ws.home}/libs" includes="*.jar" />
+		</path>
+		<pathconvert pathsep=":" property="test.classpath" refid="classpath_jars" />
+	</target>
+
+	<!-- clean -->
+	<target name="clean" depends="init">
+		<delete failonerror="false" dir="${test.dest}" />
+		<delete failonerror="false" dir="test-output" />
+		<delete failonerror="false" dir="XSLT_Reports" />
+	</target>
+
+	<!-- compile -->
+	<target name="compile" depends="clean">
+		<delete includeemptydirs="true" quiet="true">
+			<fileset dir="${test.dest}" includes="**/*" />
+		</delete>
+		<echo message="making directory..." />
+		<mkdir dir="${test.dest}" />
+		<echo message="classpath: ${test.classpath}" />
+		<echo message="compiling..." />
+		<echo message="srcdirs -> ${test.srcdirs}" />
+		<javac debug="true" target="1.8" destdir="${test.dest}" includes="**/*.java" srcdir="${test.srcdirs}" classpath="${test.classpath}" encoding="utf-8">
+		</javac>
+		<copy todir="${test.dest}">
+			<fileset dir="resources" />
+		</copy>
+	</target>
+
+	<target name="init" depends="setClassPath">
+		<property file="./build.properties" />
+
+		<condition property="testng.reportdir" value="${env.WORKSPACE}" else="${basedir}">
+			<isset property="env.WORKSPACE" />
+		</condition>
+		<delete quiet="true">
+			<fileset dir="${ws.home}/ExecutionLog" includes="**/*.xls" />
+			<fileset dir="${ws.home}/ExecutionLog" includes="**/*.txt" />
+			<fileset dir="${ws.home}/screenshots" includes="**/*.jpg" />
+			<fileset dir="${testng.reportdir}/screenshots" includes="**/*.*" />
+		</delete>
+		<mkdir dir="${testng.reportdir}/screenshots" />
+		<tstamp>
+			<format property="start.time" pattern="MM/dd/yyyy hh:mm aa" />
+		</tstamp>
+		<condition property="ANT" value="${env.ANT_HOME}/bin/ant.bat" else="${env.ANT_HOME}/bin/ant">
+			<os family="windows" />
+		</condition>
+		<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+			<classpath>
+				<pathelement location="${ws.home}/libs/ant-contrib-0.6.jar" />
+			</classpath>
+		</taskdef>
+	</target>
+
+
+	<!--
+		give the required testng.area property (use -Dtestng.area=AREA1,AREA2 on comment line) generate the appropriate testng.classfiles list to be run.
+	-->
+	<target name="testng.area.classfiles" depends="init">
+		<propertyregex property="testng.classfiles.variable" input="${testng.area}" regexp="([^,]+)" replace="**/tests/**/\1/**/*.class" global="true" />
+		<property name="testng.classfiles" value="${testng.classfiles.variable},${testng.classfiles.always}" />
+		<property name="testng.classfiles.group.exclude" value="**/DemoTestNGGroups.class" />
+	</target>
+
+	<!--
+		ant -Dtestng.area=AREA1,AREA2 testng.area will run all the tests specified in testng.classpath - which is set by the testng.area.classpath target.
+	-->
+
+	<target name="jenkins_props" depends="init" unless="${disable.jenkins.env}">
+
+		<propertyfile file="ClearMechanic/Config.properties" comment="Default properties">
+			<entry key="BROWSER" value="${env.BROWSER}" />
+			<entry key="URL" value="${env.URL}" />
+			<entry key="internalURL" value="${env.internalURL}" />
+			<entry key="AdminUsername" value="${env.AdminUsername}" />
+			<entry key="Password" value="${env.Password}" />
+		</propertyfile>
+
+	</target>
+
+	<target name="cm_props" depends="init">
+		<property name="testng.testrun.package" value="com.clearMechanic.testscripts" />
+		<property name="testng.testrun.dir" value="${ws.home}/ClearMechanic/src/test/java/com/clearMechanic/testrun" />
+	</target>
+
+	<target name="cm_props_env" depends="cm.classfiles, cm_props, jenkins_props"/>
+
+	<target name="cm.classfiles">
+		<property name="testng.classfiles" value="**/com/clearMechanic/testscripts/*.class,**/com/clearMechanic/testscripts/**/*.class" />
+		<!--The following tests use alwaysRun, which causes problems with group based test runs -->
+		<property name="testng.classfiles.group.exclude" value="**/DemoTestNGGroups.class" />
+	</target>
+
+	<path id="test.c">
+		<fileset dir="${ws.home}/libs" includes="*.jar" />
+	</path>
+
+	<target name="makexsltreports">
+		<mkdir dir="${ws.home}/XSLT_Reports/output" />
+		<path id="test.c">
+			<fileset dir="${ws.home}/libs" includes="*.jar" />
+		</path>
+		<xslt in="test-output/testng-results.xml" style="xslt/testng-results.xsl" out="${ws.home}/XSLT_Reports/output/index.html" classpathref="test.c" processor="SaxonLiaison">
+			<param name="testNgXslt.outputDir" expression="${ws.home}/XSLT_Reports/output/" />
+			<param name="testNgXslt.showRuntimeTotals" expression="true" />
+		</xslt>
+		<copy file="XSLT_Reports/output/overview.html" todir="${testng.reportdir}" />
+		<copy file="XSLT_Reports/output/overview-chart.svg" todir="${testng.reportdir}" />
+		<copy file="XSLT_Reports/output/main.js" todir="${testng.reportdir}" />
+		<copy todir="${testng.reportdir}">
+			<fileset dir="test-output" includes="**/*.html" />
+		</copy>
+		<copy todir="\\qa-nas\TestCases\opsTestResults">
+			<fileset dir="test-output" includes="selenium-execution-report*.html" />
+		</copy>
+	</target>
+
+	<!-- javadoc -->
+	<target name="javadoc" description="Generate javadoc for automation test classes" depends="init,setClassPath">
+		<property name="doc.home" value="${ws.home}/javadoc" />
+		<property name="javadoc.maxmem" value="1024m" />
+		<delete dir="${doc.home}" />
+		<mkdir dir="${doc.home}" />
+		<javadoc packagenames="com.clearMechanic.*" destdir="${doc.home}" windowtitle="Clear Mechanic Automation" useexternalfile="yes" maxmemory="${javadoc.maxmem}" classpath="${test.classpath}:bin">
+			<fileset dir="${ws.home}/LibraryUtility">
+				<include name="com/library/Utils/**/*.java" />
+			</fileset>
+			<fileset dir="${ws.home}/ClearMechanic">
+				<include name="com/clearMechanic/**/*.java" />
+			</fileset>
+		</javadoc>
+	</target>
+
+	<!-- Add Targets from here and targets name are ordered by Alphabets -->
+	<target name="DemoTestSuit" depends="cm_props_env, compile">
+		<testng classpath="${test.classpath}:${test.dest}" suitename="basic automation for demo">
+			<reporter classname="org.testng.reporters.XMLReporter">
+				<property name="generateTestResultAttributes" value="true" />
+			</reporter>
+			<xmlfileset dir="${ws.home}/ClearMechanic/src/test/java/com/clearMechanic/testrun" includes="DemoTestRun.xml" />
+		</testng>
+		<delete file="${ws.home}/overview.html" />
+		<copy file="test-output/emailable-report.html" todir="${testng.reportdir}" />
+	</target>
+
+
+</project>
