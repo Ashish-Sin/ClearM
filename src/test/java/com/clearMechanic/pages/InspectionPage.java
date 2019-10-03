@@ -5,6 +5,7 @@ import static com.clearMechanic.locators.Inspection.*;
 
 import com.clearMechanic.core.ButtonControl;
 import com.clearMechanic.core.InputControl;
+import com.clearMechanic.util.ConsoleLog;
 import com.clearMechanic.util.TestUtil;
 
 import io.appium.java_client.AppiumDriver;
@@ -39,12 +40,16 @@ public class InspectionPage extends BasePage {
 	public void goTo() {
 		this.inspectionTab.waitForElementClickable();
 		this.inspectionTab.click();
+		ConsoleLog.log("Go to Inspection tab");
 	}
 	
 	public void enterVehicleDetails(String roNumber, String vinNumber, String plates) {
 		enterRoNumberInVehicleDetails(roNumber);
+		ConsoleLog.log("Enter RO Number");
 		typeVinNumberInVehicleDetails(vinNumber);
+		ConsoleLog.log("Enter VIN Number");
 		enterPlatesInVehicleDetails(plates);
+		ConsoleLog.log("Enter Plate Number");
 	}
 	
 	public void enterValueUsingAppKeyboard(InputControl fieldName, String fieldValue) {

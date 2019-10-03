@@ -31,7 +31,7 @@ public class HistoryPage extends BasePage{
 		searchByRONumber.setTextUsingAppKeyBoard(ro);
 		ConsoleLog.log("Enter RO number");
 		Assert.assertTrue(el.isDisplayed());
-		ConsoleLog.log("Verified preasence of RO number");
+		ConsoleLog.log("Verified presence of RO number");
 	}
 	
 	@Override

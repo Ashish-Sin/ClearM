@@ -47,9 +47,11 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			String vinNumber = TestUtil.getExcelData("VIN", 1, 0);
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
 			TestUtil.hideKeyboard(getAppiumDriver());
+			
 			inspectionPage.done.click();
+			ConsoleLog.log("Click on Done");
 			inspectionPage.done.click();
-			ConsoleLog.log("Click on vehicle reception");
+			ConsoleLog.log("Click on Done");
 			
 			historyPage.goTo();
 			historyPage.verifyRONumberPresent(roNumber);
@@ -67,13 +69,19 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 		
 			inspectionPage.goTo();
 			inspectionPage.inspectionItems.click();
+			ConsoleLog.log("Click on inspection items");
 			inspectionPage.addInspectionItemSearchField.waitForElementClickable();
 			inspectionPage.addInspectionItemSearchField.click();
+			ConsoleLog.log("Click on add inspection item");
+			
 			TestUtil.hideKeyboard(getAppiumDriver());
 			inspectionPage.addInspectionItem("\"BAT\" Terminal");
+			ConsoleLog.log("Add BAT Terminal");
 			
 			inspectionPage.firstPhoto.click();
+			ConsoleLog.log("Click on add photo");
 			inspectionPage.addArrow.click();
+			
 			Assert.assertTrue(inspectionPage.figure.getMobileElement().isDisplayed());
 			ConsoleLog.log("Verified that photo is visible and arrow is added");
 			
@@ -84,7 +92,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	}
 
 	@AfterMethod
-	public void quiteApp() throws Exception {
+	public void quitApp() throws Exception {
 		destroyAppSession();
 	}
 }
