@@ -35,6 +35,14 @@ public class TestFramework extends MobileClient {
 		}
 	}
 	
+	public boolean isDisplayed() {
+		return getMobileElement().isDisplayed();
+	}
+	
+	public String getAttribute(String attribute) {
+		return getMobileElement().getAttribute(attribute);
+	}
+	
 	public void waitForElementClickable() {
 		TestUtil.waitforClickableElement(getAppiumDriver(), getMobileElement(), 40);
 	}
