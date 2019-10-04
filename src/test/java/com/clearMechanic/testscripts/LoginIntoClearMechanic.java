@@ -51,9 +51,6 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			inspectionPage.done.click();
 			ConsoleLog.log("Click on done");
 			
-			inspectionPage.done.click();
-			ConsoleLog.log("Click on Done");
-			
 			historyPage.goTo();
 			historyPage.verifyRONumberPresent(roNumber);
 			
