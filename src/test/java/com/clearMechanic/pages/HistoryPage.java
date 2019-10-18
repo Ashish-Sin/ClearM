@@ -8,7 +8,9 @@ import org.testng.Assert;
 
 import com.clearMechanic.core.ButtonControl;
 import com.clearMechanic.core.InputControl;
+import com.clearMechanic.reporter.ExtentTestManager;
 import com.clearMechanic.util.ConsoleLog;
+import com.relevantcodes.extentreports.LogStatus;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -30,6 +32,7 @@ public class HistoryPage extends BasePage{
 		searchByRONumber.click();
 		searchByRONumber.setTextUsingAppKeyBoard(ro);
 		ConsoleLog.log("Enter RO number");
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter RO number in search field");
 		Assert.assertTrue(el.isDisplayed());
 		ConsoleLog.log("Verified presence of RO number");
 	}
@@ -39,6 +42,7 @@ public class HistoryPage extends BasePage{
 		// TODO Auto-generated method stub
 		historyTab.waitForElementClickable();
 		historyTab.click();
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on History Tab");
 		ConsoleLog.log("Go to History tab");
 	}
 }

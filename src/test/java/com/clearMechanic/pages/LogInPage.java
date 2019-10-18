@@ -12,8 +12,11 @@ import org.slf4j.LoggerFactory;
 
 import com.clearMechanic.core.ButtonControl;
 import com.clearMechanic.core.InputControl;
+import com.clearMechanic.core.Log;
+import com.clearMechanic.reporter.ExtentTestManager;
 import com.clearMechanic.util.ConsoleLog;
 import com.clearMechanic.util.FileReader;
+import com.relevantcodes.extentreports.LogStatus;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -36,23 +39,32 @@ public class LogInPage extends BasePage {
 	public ButtonControl loginButton = new ButtonControl(getAppiumDriver(), LoginButton.toBy());
 	public ButtonControl forgotPassword = new ButtonControl(getAppiumDriver(), ForgotPassword.toBy());
 
-	public void goTo() {
-		
+	public void goTo() {	
 		tapToLogin.click();
 		ConsoleLog.log("Click on login button");
+		Log.info("Click on login button");
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on login button");
 	}
 
 	private void enterDetails() throws Exception {
 		dealerName.setText(DEALER_NAME);
+		Log.info("Enter Dealer name");
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Dealer name as : " + DEALER_NAME);
+
 		email.setText(EMAIL);
+		Log.info("Enter user email");
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter user email address : " + EMAIL);
+
 		password.setText(PASSWORD);
+		Log.info("Set password in Login form");
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Set password in Login form");
 	}
 
 	public void logintoApp() throws Exception {
 		this.goTo();
 		enterDetails();
 		loginButton.click();
-		ConsoleLog.log("Login to Application");
+		ConsoleLog.log("User has logged in Successfully");
 	}
 
 }

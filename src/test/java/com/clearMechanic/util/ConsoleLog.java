@@ -7,6 +7,9 @@ import java.util.logging.Logger;
 
 import org.testng.Reporter;
 
+import com.clearMechanic.reporter.ExtentTestManager;
+import com.relevantcodes.extentreports.LogStatus;
+
 public class ConsoleLog {
 
 	public static Logger LOGGER;
@@ -28,7 +31,9 @@ public class ConsoleLog {
 		try {
 
 			LOGGER.info(str);
-			Reporter.log(str);
+//			Reporter.log(str);
+			ExtentTestManager.getTest().log(LogStatus.PASS, "Step: " + String.format("%s", str));
+			
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		}

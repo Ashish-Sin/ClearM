@@ -1,17 +1,42 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="basic automation for demo" verbose="3" parallel="none" thread-count="2">
+<suite name="basic automation for demo" verbose="3" parallel="tests"
+	thread-count="2">
 
-	<test name="demo features" preserve-order="true">
+	<listeners>
+		<listener class-name="com.clearMechanic.listener.TestListeners" />
+	</listeners>
+
+	<test name="demo features">
+		<parameter name="platform" value="6.0.1"/>
+        <parameter name="udid" value="077a0e490298797e"/>
 		<classes>
 			<class name="com.clearMechanic.testscripts.LoginIntoClearMechanic">
 				<methods>
 
-					<include name="testEnterAndVerifyVehicleDetails" />
-					<include name="cameraTestCase" />
+	  				<include name="testCreateFullInspectionByEnteringVehicleDetails" /> 
+	<!--				<include name="testCameraFunctionalityInSingleItem" />
+					<include name="testUserIsAbleToSearchCreatedInspection" />       -->
 
 				</methods>
 			</class>
 		</classes>
 	</test>
+	
+	
+<!--	<test name="Android native app test on Android 9">
+        <parameter name="platform" value="9"/>
+        <parameter name="udid" value="DRGID18081103406"/>
+        <classes>
+			<class name="com.clearMechanic.testscripts.LoginIntoClearMechanic">
+				<methods>
+
+	  				<include name="testCreateFullInspectionByEnter/ingVehicleDetails" /> 
+					<include name="testCameraFunctionalityInSingleItem" />
+					<include name="testUserIsAbleToSearchCreatedInspection" />  
+
+				</methods>
+			</class>
+		</classes>
+    </test>                                                                    -->
 
 </suite>

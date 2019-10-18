@@ -5,7 +5,7 @@ import io.appium.java_client.MobileElement;
 
 public class MobileClient {
 
-public AppiumDriver<MobileElement> driver = null;
+public static AppiumDriver<MobileElement> driver = null;
 	
 	public void setAppiumDriver(AppiumDriver<MobileElement> appiumDriver) {
 		this.driver = appiumDriver;
@@ -15,6 +15,7 @@ public AppiumDriver<MobileElement> driver = null;
 		if (driver == null) {
 			driver = theAppiumDriver;
 		}
+	//	System.out.println("Intialize driver ="+driver);
 		return driver;
 	}
 	

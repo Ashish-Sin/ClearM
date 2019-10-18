@@ -5,29 +5,39 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Reporter;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 
 import com.clearMechanic.util.ConsoleLog;
 import com.clearMechanic.util.FileReader;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class BaseTestCase extends MobileClient{
 
-	public AppiumDriver<MobileElement> driver;
+	public static AppiumDriver<MobileElement> driver;
 	private int port = 0;
 	private final String udid;
 	
@@ -36,35 +46,35 @@ public class BaseTestCase extends MobileClient{
 		this.port = port;
 	}
 
-	public void setUp() throws Exception {
-		ConsoleLog.LOGGER.toString();         // instantiating static block of ConsoleLog
+	public BaseTestCase() {
+		this.udid = "";
+		this.port = 0;
+		System.out.println("In default construc5tor");
+	}
+
+//	@BeforeTest
+	@Parameters({"udid", "platform"})
+	public void setUp(String udid, String version) throws Exception {
 		ConsoleLog.log("Launching Application......");
+		Log.info("Launching Application......");
 		// setup port
 		if (port == 0)
 			port = Integer.parseInt(FileReader.readData("Port"));
 		String host = FileReader.readData("Host");
 		try {
-			driver = new AppiumDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"), getDesiredCapabilities(this.getAppAbsoultePath(), ""));
+			driver = new AppiumDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"), getDesiredCapabilities(udid, version));
 
 		} catch (Exception e) {
 			ConsoleLog.log("appium server not stated");
 			throw new Exception(e);
 		}
-//		setTheAppiumDriver(driver);
-		setAppiumDriver(driver);
+		setAppiumDriver(driver);	
 	}
 
 	public void destroyAppSession() throws Exception {
 		driver.quit();
 	}
-
-	/**
-	 * @author Get absolute path of android application apk file. Apk file is
-	 *         under the app folder
-	 * @param no parameter
-	 * @return absolute path.
-	 * @throws Exception
-	 */
+	
 	public String getAppAbsoultePath() throws Exception {
 		File classpathRoot = new File(System.getProperty("user.dir"));
 		File appDir = new File(classpathRoot, "/app");
@@ -86,17 +96,20 @@ public class BaseTestCase extends MobileClient{
 	 * @param appPath application absolute path
 	 * @return object of DesiredCapabilities.
 	 */
-	public DesiredCapabilities getDesiredCapabilities(String appPath, String androidVersion) throws Exception {
+	
+	public DesiredCapabilities getDesiredCapabilities(String udid, String version) throws Exception {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		
 		if(getOS().equals("Android")) {
 			capabilities.setCapability("platformName", "Android");
 			capabilities.setCapability("deviceName", "Appium");
-			capabilities.setCapability("platformVersion", androidVersion);
+			capabilities.setCapability("platformVersion", version);
 			capabilities.setCapability("appPackage", "com.clearcheck.cmbeta");
 			capabilities.setCapability("appActivity", "md5e047583c9ad193c8c022c6c9ad74d95b.HostActivity");
 //			capabilities.setCapability("app", appPath);
 			capabilities.setCapability("autoGrantPermissions", "true");
+			capabilities.setCapability("clearDeviceLogsOnStart", true);
+//			capabilities.setCapability(AndroidMobileCapabilityType.SYSTEM_PORT, systemPort);
 			if (StringUtils.isNoneBlank(udid)) {
 				capabilities.setCapability("udid", udid);
 			}
@@ -197,19 +210,32 @@ public class BaseTestCase extends MobileClient{
 	}
 
 	// capturing screenshot
-	public void captureScreenshot(String fileName) throws Exception {
+	public String captureScreenshot() throws Exception {
+		String base64Screenshot = null ;
+		
+		System.out.println("In cature screenshot driverinstace"+getAppiumDriver());
+		try {
+		base64Screenshot = "data:image/png;base64,"+((TakesScreenshot)getAppiumDriver()).
+                getScreenshotAs(OutputType.BASE64);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Error in takinf screenshot"+e.getCause());
+		}
 		String folderPath = "screenshots//";
 //		createFolder("build/outputs");
 		createFolder(folderPath);
-		try {
-
-			FileOutputStream out = new FileOutputStream(folderPath + fileName + ".jpg");
-			out.write(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
-			out.close();
-
-		} catch (Exception e) {
-
-		}
+//		try {
+//
+//			FileOutputStream out = new FileOutputStream(folderPath + fileName + ".jpg");
+//			out.write(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
+//			out.close();
+//
+//		} catch (Exception e) {
+//
+//		}
+		System.out.println("In cature screenshot"+base64Screenshot);
+		return base64Screenshot;
 	}
 
 	public void reportLog(String message) {
@@ -226,5 +252,20 @@ public class BaseTestCase extends MobileClient{
 
 		}
 	}
-
+	public static void captureLog(AppiumDriver<MobileElement> driver, String testID)
+			throws Exception {
+			DateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH-mm-ss");
+			Date today = Calendar.getInstance().getTime();
+			String reportDate = df.format(today);
+			String logPath = System.getProperty("user.dir")+"\\Logs\\";
+			Log.info(driver.getSessionId() + ": Saving device log...");
+			List<LogEntry> logEntries = driver.manage().logs().get("logcat").filter(Level.ALL);
+			File logFile = new File(logPath + reportDate + "_" + testID + ".txt");
+			PrintWriter log_file_writer = new PrintWriter(logFile);
+			log_file_writer.println(logEntries );
+			ConsoleLog.log("<a href='file:///C://Users//ashishk//Documents//ClearM//Logs//17_10_2019_15-40-28_1111.txt'>Link to logs</a>");
+			log_file_writer.flush();
+			Log.info(driver.getSessionId() + ": Saving device log - Done.");
+			}
+			
 }

@@ -99,7 +99,7 @@ public class TestUtil extends MobileClient{
 	}
 	
 	public static void getCrashLog(AppiumDriver<MobileElement> driver) {
-		List<LogEntry> crashEntries = driver.manage().logs().get("crashlog").getAll();
+		List<LogEntry> crashEntries = driver.manage().logs().get("logcat").getAll();
 		
 		if (crashEntries.size() > 0) {
 			ConsoleLog.log("APPLICATION CRASH DETECTED>>>>>>>>>>>>>>>>>>" + crashEntries.get(0).getMessage());
