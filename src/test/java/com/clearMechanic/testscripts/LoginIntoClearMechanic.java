@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Factory;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.clearMechanic.core.BaseTestCase;
@@ -12,10 +11,8 @@ import com.clearMechanic.pages.HistoryPage;
 import com.clearMechanic.pages.InspectionPage;
 import com.clearMechanic.pages.LogInPage;
 import com.clearMechanic.util.ConsoleLog;
-import com.clearMechanic.util.TestListener;
 import com.clearMechanic.util.TestUtil;
 
-@Listeners(TestListener.class)
 public class LoginIntoClearMechanic extends BaseTestCase {
 
 	private LogInPage loginPage;
@@ -38,7 +35,6 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	}
 
 	@Test
-	@TestCaseInfo(testCaseID = "10072", title = "createNewCubeGroupAndAccounts", description = "AccountAdmin_CreateCubeAccount&Group")
 	public void testEnterAndVerifyVehicleDetails() throws Exception {
 		String roNumber = "465456";
 		String plates = "46545";
