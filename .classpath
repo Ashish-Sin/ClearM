@@ -4,8 +4,6 @@
 	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="jarfiles/commons-lang3-3.9-bin/commons-lang3-3.9/commons-lang3-3.9.jar"/>
-	<classpathentry kind="lib" path="jarfiles/slf4j-1.7.28/integration/lib/slf4j-api-2.0.99.jar"/>
-	<classpathentry kind="lib" path="jarfiles/slf4j-1.7.28/integration/lib/slf4j-simple-1.6.99.jar"/>
 	<classpathentry kind="lib" path="jarfiles/java-client-7.2.0.jar"/>
 	<classpathentry kind="lib" path="jarfiles/org.apache.commons.io.jar"/>
 	<classpathentry kind="lib" path="jarfiles/selenium-server-standalone-3.141.59.jar"/>
@@ -18,7 +16,6 @@
 	<classpathentry kind="lib" path="jarfiles/poi-3.11-20141221.jar"/>
 	<classpathentry kind="lib" path="jarfiles/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="lib" path="jarfiles/extentreports-2.41.2.jar"/>
-	<classpathentry kind="lib" path="jarfiles/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="jarfiles/freemarker-2.3.29.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

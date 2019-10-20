@@ -5,7 +5,6 @@ import static com.clearMechanic.locators.Inspection.*;
 
 import com.clearMechanic.core.ButtonControl;
 import com.clearMechanic.core.InputControl;
-import com.clearMechanic.core.Log;
 import com.clearMechanic.reporter.ExtentTestManager;
 import com.clearMechanic.util.ConsoleLog;
 import com.clearMechanic.util.TestUtil;
@@ -43,7 +42,6 @@ public class InspectionPage extends BasePage {
 	public void goTo() {
 		this.inspectionTab.waitForElementClickable();
 		this.inspectionTab.click();
-		Log.info("Go to Inspection tab");
 		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Go to Inspection tab");
 		ConsoleLog.log("Go to Inspection tab");
 	}

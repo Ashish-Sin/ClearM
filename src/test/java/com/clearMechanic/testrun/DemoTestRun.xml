@@ -8,14 +8,14 @@
 
 	<test name="demo features">
 		<parameter name="platform" value="6.0.1"/>
-        <parameter name="udid" value="077a0e490298797e"/>
+        <parameter name="udid" value="DRGID18081103406"/>
 		<classes>
 			<class name="com.clearMechanic.testscripts.LoginIntoClearMechanic">
 				<methods>
 
 	  				<include name="testCreateFullInspectionByEnteringVehicleDetails" /> 
-	<!--				<include name="testCameraFunctionalityInSingleItem" />
-					<include name="testUserIsAbleToSearchCreatedInspection" />       -->
+					<include name="testCameraFunctionalityInSingleItem" />
+					<include name="testUserIsAbleToSearchCreatedInspection" />
 
 				</methods>
 			</class>

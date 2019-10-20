@@ -7,12 +7,9 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class FileReader {
 
-	private static final Logger logger = LoggerFactory.getLogger(FileReader.class);
 	private static final String configFile = "Config.properties";
 
 	/**
@@ -37,7 +34,7 @@ public class FileReader {
 				value = properties.getProperty(key);
 			}
 		} catch (Exception e) {
-			logger.debug("file not found");
+//			logger.debug("file not found");
 		}
 		return value;
 	}
@@ -60,7 +57,7 @@ public class FileReader {
 				value = properties.getProperty(key);
 			}
 		} catch (Exception e) {
-			logger.debug(fileName + " file not found");
+//			logger.debug(fileName + " file not found");
 		}
 		return value;
 	}
@@ -87,7 +84,7 @@ public class FileReader {
 			// prop.save(ob, "");
 
 		} catch (IOException ex) {
-			logger.debug(" file not found");
+//			logger.debug(" file not found");
 		}
 	}
 

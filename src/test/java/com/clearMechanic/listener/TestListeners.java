@@ -7,7 +7,6 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import com.clearMechanic.core.BaseTestCase;
-import com.clearMechanic.core.Log;
 import com.clearMechanic.reporter.ExtentManager;
 import com.clearMechanic.reporter.ExtentTestManager;
 import com.relevantcodes.extentreports.LogStatus;
@@ -20,7 +19,7 @@ public class TestListeners extends BaseTestCase implements ITestListener {
 
 	// Before starting all tests, below method runs.
 	public void onStart(ITestContext iTestContext) {
-		Log.info("I am on Start method " + iTestContext.getName());
+//		Log.info("I am on Start method " + iTestContext.getName());
 
 		iTestContext.setAttribute("WebDriver", this.getAppiumDriver());
 
@@ -29,7 +28,7 @@ public class TestListeners extends BaseTestCase implements ITestListener {
 
 	// After ending all tests, below method runs.
 	public void onFinish(ITestContext iTestContext) {
-		Log.info("I am on Finish method " + iTestContext.getName());
+//		Log.info("I am on Finish method " + iTestContext.getName());
 		
 		// Do tier down operations for extentreports reporting!
 		ExtentTestManager.endTest();
@@ -37,11 +36,11 @@ public class TestListeners extends BaseTestCase implements ITestListener {
 	}
 
 	public void onTestStart(ITestResult iTestResult) {
-		Log.info("I am on TestStart method " + getTestMethodName(iTestResult) + " start");
+//		Log.info("I am on TestStart method " + getTestMethodName(iTestResult) + " start");
 		
 		// Start operation for extentreports.
 		// ExtentTestManager.
-		Log.info("I am in onStart method " + iTestResult.getTestContext().getAttribute("testname"));
+//		Log.info("I am in onStart method " + iTestResult.getTestContext().getAttribute("testname"));
 		try {
 			ExtentTestManager.startTest(iTestResult.getTestContext().getAttribute("testName").toString(), "");
 		} catch (Exception e) {
@@ -50,7 +49,7 @@ public class TestListeners extends BaseTestCase implements ITestListener {
 	}
 
 	public void onTestSuccess(ITestResult iTestResult) {
-		Log.info("I am on TestSuccess method " + getTestMethodName(iTestResult) + " succeed");
+//		Log.info("I am on TestSuccess method " + getTestMethodName(iTestResult) + " succeed");
 		
 		// Extentreports log operation for passed tests.
 		ExtentTestManager.getTest().log(LogStatus.PASS,getTestMethodName(iTestResult) + " : Test Method has been passed");
@@ -74,7 +73,7 @@ public class TestListeners extends BaseTestCase implements ITestListener {
 	}
 
 	public void onTestError(ITestResult iTestResult) {
-		Log.info("I am on TestSuccess method " + getTestMethodName(iTestResult) + " errored");
+//		Log.info("I am on TestSuccess method " + getTestMethodName(iTestResult) + " errored");
 		
 		// Extentreports log operation for passed tests.
 		ExtentTestManager.getTest().log(LogStatus.ERROR, getTestMethodName(iTestResult) + " : Test Method has been errored");
@@ -86,7 +85,7 @@ public class TestListeners extends BaseTestCase implements ITestListener {
 	}
 
 	public void onTestSkipped(ITestResult iTestResult) {
-		Log.info("I am in onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
+//		Log.info("I am in onTestSkipped method " + getTestMethodName(iTestResult) + " skipped");
 		
 		// Extentreports log operation for skipped tests.
 		ExtentTestManager.getTest().log(LogStatus.SKIP, "Test Skipped");
@@ -94,7 +93,7 @@ public class TestListeners extends BaseTestCase implements ITestListener {
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-		Log.info("Test failed but it is in defined success ratio " + getTestMethodName(iTestResult));
+//		Log.info("Test failed but it is in defined success ratio " + getTestMethodName(iTestResult));
 		ExtentManager.getReporter().flush();
 	}
 

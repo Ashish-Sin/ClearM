@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Level;
 
@@ -35,12 +36,12 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 
-public class BaseTestCase extends MobileClient{
+public class BaseTestCase extends MobileClient {
 
 	public static AppiumDriver<MobileElement> driver;
 	private int port = 0;
 	private final String udid;
-	
+
 	public BaseTestCase(String udid, int port) {
 		this.udid = udid;
 		this.port = port;
@@ -53,28 +54,36 @@ public class BaseTestCase extends MobileClient{
 	}
 
 //	@BeforeTest
-	@Parameters({"udid", "platform"})
+	@Parameters({ "udid", "platform" })
 	public void setUp(String udid, String version) throws Exception {
 		ConsoleLog.log("Launching Application......");
-		Log.info("Launching Application......");
 		// setup port
 		if (port == 0)
 			port = Integer.parseInt(FileReader.readData("Port"));
 		String host = FileReader.readData("Host");
 		try {
-			driver = new AppiumDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"), getDesiredCapabilities(udid, version));
+			driver = new AppiumDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"),
+					getDesiredCapabilities(udid, version));
 
 		} catch (Exception e) {
 			ConsoleLog.log("appium server not stated");
 			throw new Exception(e);
 		}
-		setAppiumDriver(driver);	
+		setAppiumDriver(driver);
+//		String packageName = driver.getCurrentPackage();
+//		String revokeLocationPermission = "adb shell pm revoke " + packageName + " android.permission.RECORD_AUDIO";
+//		try {
+//			Runtime.getRuntime().exec(revokeLocationPermission);
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public void destroyAppSession() throws Exception {
 		driver.quit();
 	}
-	
+
 	public String getAppAbsoultePath() throws Exception {
 		File classpathRoot = new File(System.getProperty("user.dir"));
 		File appDir = new File(classpathRoot, "/app");
@@ -82,25 +91,26 @@ public class BaseTestCase extends MobileClient{
 		String appName = app.getAbsolutePath();
 		return appName;
 	}
-	
+
 	public String getAndroidVersion() {
 		return FileReader.readData("AndroidVersion");
 	}
-	
+
 	public String getOS() {
 		return FileReader.readData("OSVersion");
 	}
 
 	/**
-	 * @author Setup configuration in DesiredCapabilities which appium used to run test
+	 * @author Setup configuration in DesiredCapabilities which appium used to run
+	 *         test
 	 * @param appPath application absolute path
 	 * @return object of DesiredCapabilities.
 	 */
-	
+
 	public DesiredCapabilities getDesiredCapabilities(String udid, String version) throws Exception {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
-		
-		if(getOS().equals("Android")) {
+
+		if (getOS().equals("Android")) {
 			capabilities.setCapability("platformName", "Android");
 			capabilities.setCapability("deviceName", "Appium");
 			capabilities.setCapability("platformVersion", version);
@@ -120,13 +130,13 @@ public class BaseTestCase extends MobileClient{
 			capabilities.setCapability("platformVersion", "12.4");
 			capabilities.setCapability("bundleId", "com.clearcheck.cmbeta");
 			capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
-			capabilities.setCapability("agentPath", "/usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent/WebDriverAgent.xcodeproj");
-			capabilities.setCapability("bootstrapPath", "/usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent");
-			
+			capabilities.setCapability("agentPath",
+					"/usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent/WebDriverAgent.xcodeproj");
+			capabilities.setCapability("bootstrapPath",
+					"/usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent");
+
 //			capabilities.setCapability("autoGrantPermissions", "true");
 		}
-		
-		
 
 		return capabilities;
 	}
@@ -211,16 +221,14 @@ public class BaseTestCase extends MobileClient{
 
 	// capturing screenshot
 	public String captureScreenshot() throws Exception {
-		String base64Screenshot = null ;
-		
-		System.out.println("In cature screenshot driverinstace"+getAppiumDriver());
+		String base64Screenshot = null;
+
+		System.out.println("In cature screenshot driverinstace" + getAppiumDriver());
 		try {
-		base64Screenshot = "data:image/png;base64,"+((TakesScreenshot)getAppiumDriver()).
-                getScreenshotAs(OutputType.BASE64);
-		}
-		catch(Exception e)
-		{
-			System.out.println("Error in takinf screenshot"+e.getCause());
+			base64Screenshot = "data:image/png;base64,"
+					+ ((TakesScreenshot) getAppiumDriver()).getScreenshotAs(OutputType.BASE64);
+		} catch (Exception e) {
+			System.out.println("Error in takinf screenshot" + e.getCause());
 		}
 		String folderPath = "screenshots//";
 //		createFolder("build/outputs");
@@ -234,7 +242,7 @@ public class BaseTestCase extends MobileClient{
 //		} catch (Exception e) {
 //
 //		}
-		System.out.println("In cature screenshot"+base64Screenshot);
+		System.out.println("In cature screenshot" + base64Screenshot);
 		return base64Screenshot;
 	}
 
@@ -252,20 +260,24 @@ public class BaseTestCase extends MobileClient{
 
 		}
 	}
-	public static void captureLog(AppiumDriver<MobileElement> driver, String testID)
-			throws Exception {
-			DateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH-mm-ss");
-			Date today = Calendar.getInstance().getTime();
-			String reportDate = df.format(today);
-			String logPath = System.getProperty("user.dir")+"\\Logs\\";
-			Log.info(driver.getSessionId() + ": Saving device log...");
-			List<LogEntry> logEntries = driver.manage().logs().get("logcat").filter(Level.ALL);
-			File logFile = new File(logPath + reportDate + "_" + testID + ".txt");
-			PrintWriter log_file_writer = new PrintWriter(logFile);
-			log_file_writer.println(logEntries );
-			ConsoleLog.log("<a href='file:///C://Users//ashishk//Documents//ClearM//Logs//17_10_2019_15-40-28_1111.txt'>Link to logs</a>");
-			log_file_writer.flush();
-			Log.info(driver.getSessionId() + ": Saving device log - Done.");
-			}
-			
+
+	public static void captureLog(AppiumDriver<MobileElement> driver, String testID) throws Exception {
+		DateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH-mm-ss");
+		Date today = Calendar.getInstance().getTime();
+		String reportDate = df.format(today);
+		String logPath = System.getProperty("user.dir") + "\\Logs\\";
+//			Log.info(driver.getSessionId() + ": Saving device log...");
+		List<LogEntry> logEntries = driver.manage().logs().get("logcat").getAll();
+		File logFile = new File(logPath + reportDate + "_" + testID + ".txt");
+
+		PrintWriter log_file_writer = new PrintWriter(logFile);
+		log_file_writer.println(logEntries);
+		Scanner sc = new Scanner(logFile);
+		while (sc.hasNextLine())
+			System.out.println("++++++++++++++++++" + sc.nextLine());
+		ConsoleLog.log("<a href=" + logFile + ">Link to logs</a>");
+		log_file_writer.flush();
+//			Log.info(driver.getSessionId() + ": Saving device log - Done.");
+	}
+
 }

@@ -2,7 +2,6 @@ package com.clearMechanic.testscripts;
 
 import java.lang.reflect.Method;
 
-import org.apache.log4j.xml.DOMConfigurator;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
@@ -46,7 +45,6 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	@BeforeMethod
 	@Parameters({"udid", "platform"})
 	public void BeforeMethod(Method method, ITestContext ctx, String udid, String version) throws Exception {
-		DOMConfigurator.configure("log4j.xml");
 
 		setUp(udid, version);
 		loginPage = new LogInPage(getAppiumDriver());
@@ -85,8 +83,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 
 			inspectionPage.done.click();
 			ConsoleLog.log("Click on Done");
-			inspectionPage.done.click();
-			ConsoleLog.log("Click on Done");
+			
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Done Button");
 
 			historyPage.goTo();
