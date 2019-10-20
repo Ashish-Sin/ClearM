@@ -4,14 +4,14 @@ import org.openqa.selenium.By;
 
 import com.clearMechanic.util.TestUtil;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 public class TestFramework extends MobileClient {
 	
 	private By locateBy;
 
-	public TestFramework(AppiumDriver<MobileElement> driver, By by) {
+	public TestFramework(AndroidDriver<MobileElement> driver, By by) {
 		this.driver = driver;
 		locateBy = by;
 	}
@@ -44,12 +44,12 @@ public class TestFramework extends MobileClient {
 	}
 	
 	public void waitForElementClickable() {
-		TestUtil.waitforClickableElement(getAppiumDriver(), getMobileElement(), 40);
+		TestUtil.waitforClickableElement(getAndroidDriver(), getMobileElement(), 40);
 	}
 	
 	public MobileElement getMobileElement() {
-		TestUtil.waitforClickableElement(getAppiumDriver(), getLocatorBy(), 15);
-		return getAppiumDriver().findElement(getLocatorBy());
+		TestUtil.waitforClickableElement(getAndroidDriver(), getLocatorBy(), 15);
+		return getAndroidDriver().findElement(getLocatorBy());
 	}
 	
 }

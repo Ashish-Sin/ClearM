@@ -11,34 +11,33 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WrapsDriver;
 import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.clearMechanic.core.MobileClient;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 public class TestUtil extends MobileClient{
 
-//	public TestUtil(AppiumDriver<MobileElement> driver, By by) {
+//	public TestUtil(AndroidDriver<MobileElement> driver, By by) {
 //		super(driver, by);
 //	}
 
 	public int globalWaitTime = 10;
 	
-	public static AppiumDriver<MobileElement> getAppiumDriver(MobileElement element) {
-		return (AppiumDriver<MobileElement>) element.getWrappedDriver();
+	public static AndroidDriver<MobileElement> getAndroidDriver(MobileElement element) {
+		return (AndroidDriver<MobileElement>) element.getWrappedDriver();
 	}
 	
-	public static void waitforClickableElement(AppiumDriver<MobileElement> driver, MobileElement el, int globalWaitTime) {
+	public static void waitforClickableElement(AndroidDriver<MobileElement> driver, MobileElement el, int globalWaitTime) {
 		WebDriverWait wait = new WebDriverWait(driver, globalWaitTime);
 		wait.until(ExpectedConditions.elementToBeClickable(el));
 	}
 	
-	public static void waitforClickableElement(AppiumDriver<MobileElement> driver, By by, int globalWaitTime) {
+	public static void waitforClickableElement(AndroidDriver<MobileElement> driver, By by, int globalWaitTime) {
 		WebDriverWait wait = new WebDriverWait(driver, globalWaitTime);
 		wait.until(ExpectedConditions.elementToBeClickable(by));
 	}
@@ -98,7 +97,7 @@ public class TestUtil extends MobileClient{
 		}
 	}
 	
-	public static void getCrashLog(AppiumDriver<MobileElement> driver) {
+	public static void getCrashLog(AndroidDriver<MobileElement> driver) {
 		List<LogEntry> crashEntries = driver.manage().logs().get("logcat").getAll();
 		
 		if (crashEntries.size() > 0) {
@@ -106,7 +105,7 @@ public class TestUtil extends MobileClient{
 		}
 	}
 	
-	public static void hideKeyboard(AppiumDriver<MobileElement> driver) {
+	public static void hideKeyboard(AndroidDriver<MobileElement> driver) {
 		driver.hideKeyboard();
 		ConsoleLog.log("Hide Keyboard");
 		sleep(1000, "Wait till keyboard is hidden");

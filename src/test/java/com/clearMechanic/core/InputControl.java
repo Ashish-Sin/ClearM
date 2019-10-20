@@ -2,12 +2,12 @@ package com.clearMechanic.core;
 
 import org.openqa.selenium.By;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 public class InputControl extends TestFramework {
 
-	public InputControl(AppiumDriver<MobileElement> driver, By by) {
+	public InputControl(AndroidDriver<MobileElement> driver, By by) {
 		super(driver, by);
 	}
 
@@ -37,7 +37,7 @@ public class InputControl extends TestFramework {
 		char[] t = text.toCharArray();
 		for (int i = 0; i < text.length(); i++) {
 			By by = By.xpath(String.format("//*[contains(@resource-id, 'btn%s')]", t[i]));
-			MobileElement key = getAppiumDriver().findElement(by);
+			MobileElement key = getAndroidDriver().findElement(by);
 			key.click();
 			
 		}

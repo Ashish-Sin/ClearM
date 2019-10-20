@@ -21,9 +21,9 @@ public class TestListeners extends BaseTestCase implements ITestListener {
 	public void onStart(ITestContext iTestContext) {
 //		Log.info("I am on Start method " + iTestContext.getName());
 
-		iTestContext.setAttribute("WebDriver", this.getAppiumDriver());
+		iTestContext.setAttribute("WebDriver", this.getAndroidDriver());
 
-		System.out.println("Driver instance in Listemer" + this.getAppiumDriver());
+		System.out.println("Driver instance in Listemer" + this.getAndroidDriver());
 	}
 
 	// After ending all tests, below method runs.
@@ -63,8 +63,8 @@ public class TestListeners extends BaseTestCase implements ITestListener {
 		Object testClass = iTestResult.getInstance();
 
 		// Take base64Screenshot screenshot.
-		System.out.println("in listener :" + getAppiumDriver());
-		String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) getAppiumDriver()).getScreenshotAs(OutputType.BASE64);
+		System.out.println("in listener :" + getAndroidDriver());
+		String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) getAndroidDriver()).getScreenshotAs(OutputType.BASE64);
 		String Message = iTestResult.getThrowable().getMessage() != null? iTestResult.getThrowable().getMessage().toString(): iTestResult.getThrowable().getCause().toString();
 
 		// Extentreports log and screenshot operations for failed tests.

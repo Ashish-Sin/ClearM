@@ -2,12 +2,12 @@ package com.clearMechanic.core;
 
 import org.openqa.selenium.By;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 public class ButtonControl extends TestFramework {
 
-	public ButtonControl(AppiumDriver<MobileElement> driver, By by) {
+	public ButtonControl(AndroidDriver<MobileElement> driver, By by) {
 		  super(driver, by);
 	}
 	

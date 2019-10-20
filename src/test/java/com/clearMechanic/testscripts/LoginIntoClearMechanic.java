@@ -36,9 +36,9 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	// @BeforeMethod
 	// public void LaunchApp() throws Exception {
 	// setUp();
-	// loginPage = new LogInPage(getAppiumDriver());
-	// inspectionPage = new InspectionPage(getAppiumDriver());
-	// historyPage = new HistoryPage(getAppiumDriver());
+	// loginPage = new LogInPage(getAndroidDriver());
+	// inspectionPage = new InspectionPage(getAndroidDriver());
+	// historyPage = new HistoryPage(getAndroidDriver());
 	//
 	// }
 
@@ -47,9 +47,9 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 	public void BeforeMethod(Method method, ITestContext ctx, String udid, String version) throws Exception {
 
 		setUp(udid, version);
-		loginPage = new LogInPage(getAppiumDriver());
-		inspectionPage = new InspectionPage(getAppiumDriver());
-		historyPage = new HistoryPage(getAppiumDriver());
+		loginPage = new LogInPage(getAndroidDriver());
+		inspectionPage = new InspectionPage(getAndroidDriver());
+		historyPage = new HistoryPage(getAndroidDriver());
 
 		if (method.getName().equals("testCreateFullInspectionByEnteringVehicleDetails")) {
 			ctx.setAttribute("testName", "Verify_ User is able to create full inspection");
@@ -79,7 +79,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 
 			String vinNumber = TestUtil.getExcelData("VIN", 1, 0);
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
-			TestUtil.hideKeyboard(getAppiumDriver());
+			TestUtil.hideKeyboard(getAndroidDriver());
 
 			inspectionPage.done.click();
 			ConsoleLog.log("Click on Done");
@@ -108,7 +108,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			inspectionPage.addInspectionItemSearchField.click();
 			ConsoleLog.log("Click on add inspection item");
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on add inspection item");
-			TestUtil.hideKeyboard(getAppiumDriver());
+			TestUtil.hideKeyboard(getAndroidDriver());
 			inspectionPage.addInspectionItem("\"BAT\" Terminal");
 			ConsoleLog.log("Add BAT Terminal");
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on \"BAT\" Terminal");
@@ -143,7 +143,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 
 			String vinNumber = TestUtil.getExcelData("VIN", 2, 0);
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
-			TestUtil.hideKeyboard(getAppiumDriver());
+			TestUtil.hideKeyboard(getAndroidDriver());
 
 			inspectionPage.done.click();
 			ConsoleLog.log("Click on Done");
@@ -161,7 +161,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 
 	@AfterMethod
 	public void quitApp() throws Exception {
-		captureLog(getAppiumDriver(), TestListener.testCaseID);
+		captureLog(getAndroidDriver(), TestListener.testCaseID);
 		destroyAppSession();
 	}
 }

@@ -1,28 +1,28 @@
 package com.clearMechanic.core;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 public class MobileClient {
 
-public static AppiumDriver<MobileElement> driver = null;
+public static AndroidDriver<MobileElement> driver = null;
 	
-	public void setAppiumDriver(AppiumDriver<MobileElement> appiumDriver) {
-		this.driver = appiumDriver;
+	public void setAndroidDriver(AndroidDriver<MobileElement> AndroidDriver) {
+		this.driver = AndroidDriver;
 	}
 	
-	public AppiumDriver<MobileElement> getAppiumDriver() {
+	public AndroidDriver<MobileElement> getAndroidDriver() {
 		if (driver == null) {
-			driver = theAppiumDriver;
+			driver = theAndroidDriver;
 		}
 	//	System.out.println("Intialize driver ="+driver);
 		return driver;
 	}
 	
-	private static AppiumDriver<MobileElement> theAppiumDriver;                          // Yet to decide on it's visibility
+	private static AndroidDriver<MobileElement> theAndroidDriver;                          // Yet to decide on it's visibility
 	
-	public void setTheAppiumDriver(AppiumDriver<MobileElement> driver) {
-		theAppiumDriver = driver;
+	public void setTheAndroidDriver(AndroidDriver<MobileElement> driver) {
+		theAndroidDriver = driver;
 	}
 	
 }

@@ -31,14 +31,14 @@ import org.testng.annotations.Parameters;
 import com.clearMechanic.util.ConsoleLog;
 import com.clearMechanic.util.FileReader;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class BaseTestCase extends MobileClient {
 
-	public static AppiumDriver<MobileElement> driver;
+	public static AndroidDriver<MobileElement> driver;
 	private int port = 0;
 	private final String udid;
 
@@ -62,14 +62,14 @@ public class BaseTestCase extends MobileClient {
 			port = Integer.parseInt(FileReader.readData("Port"));
 		String host = FileReader.readData("Host");
 		try {
-			driver = new AppiumDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"),
+			driver = new AndroidDriver<MobileElement>(new URL("http://" + host + ":" + port + "/wd/hub"),
 					getDesiredCapabilities(udid, version));
 
 		} catch (Exception e) {
 			ConsoleLog.log("appium server not stated");
 			throw new Exception(e);
 		}
-		setAppiumDriver(driver);
+		setAndroidDriver(driver);
 //		String packageName = driver.getCurrentPackage();
 //		String revokeLocationPermission = "adb shell pm revoke " + packageName + " android.permission.RECORD_AUDIO";
 //		try {
@@ -223,10 +223,10 @@ public class BaseTestCase extends MobileClient {
 	public String captureScreenshot() throws Exception {
 		String base64Screenshot = null;
 
-		System.out.println("In cature screenshot driverinstace" + getAppiumDriver());
+		System.out.println("In cature screenshot driverinstace" + getAndroidDriver());
 		try {
 			base64Screenshot = "data:image/png;base64,"
-					+ ((TakesScreenshot) getAppiumDriver()).getScreenshotAs(OutputType.BASE64);
+					+ ((TakesScreenshot) getAndroidDriver()).getScreenshotAs(OutputType.BASE64);
 		} catch (Exception e) {
 			System.out.println("Error in takinf screenshot" + e.getCause());
 		}
@@ -261,7 +261,7 @@ public class BaseTestCase extends MobileClient {
 		}
 	}
 
-	public static void captureLog(AppiumDriver<MobileElement> driver, String testID) throws Exception {
+	public static void captureLog(AndroidDriver<MobileElement> driver, String testID) throws Exception {
 		DateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH-mm-ss");
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);

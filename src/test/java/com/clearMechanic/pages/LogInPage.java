@@ -14,8 +14,8 @@ import com.clearMechanic.util.ConsoleLog;
 import com.clearMechanic.util.FileReader;
 import com.relevantcodes.extentreports.LogStatus;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 public class LogInPage extends BasePage {
 	
@@ -23,16 +23,16 @@ public class LogInPage extends BasePage {
 	private final static String EMAIL = FileReader.readData("Email");
 	private final static String PASSWORD = FileReader.readData("Password");
 
-	public LogInPage(AppiumDriver<MobileElement> driver) {
+	public LogInPage(AndroidDriver<MobileElement> driver) {
 		super(driver);
 	}
 
-	public ButtonControl tapToLogin = new ButtonControl(getAppiumDriver(), Login.toBy());
-	public InputControl dealerName = new InputControl(getAppiumDriver(), DealerOrShopName.toBy());
-	public InputControl email = new InputControl(getAppiumDriver(), Email.toBy());
-	public InputControl password = new InputControl(getAppiumDriver(), Password.toBy());
-	public ButtonControl loginButton = new ButtonControl(getAppiumDriver(), LoginButton.toBy());
-	public ButtonControl forgotPassword = new ButtonControl(getAppiumDriver(), ForgotPassword.toBy());
+	public ButtonControl tapToLogin = new ButtonControl(getAndroidDriver(), Login.toBy());
+	public InputControl dealerName = new InputControl(getAndroidDriver(), DealerOrShopName.toBy());
+	public InputControl email = new InputControl(getAndroidDriver(), Email.toBy());
+	public InputControl password = new InputControl(getAndroidDriver(), Password.toBy());
+	public ButtonControl loginButton = new ButtonControl(getAndroidDriver(), LoginButton.toBy());
+	public ButtonControl forgotPassword = new ButtonControl(getAndroidDriver(), ForgotPassword.toBy());
 
 	public void goTo() {	
 		tapToLogin.click();

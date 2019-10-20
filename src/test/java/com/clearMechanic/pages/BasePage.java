@@ -6,18 +6,18 @@ import com.clearMechanic.core.ButtonControl;
 import com.clearMechanic.core.IBasePage;
 import com.clearMechanic.core.MobileClient;
 
-import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 public abstract class BasePage extends MobileClient implements IBasePage {
 
-//	protected AppiumDriver<MobileElement> driver;
+//	protected AndroidDriver<MobileElement> driver;
 
-	public BasePage(AppiumDriver<MobileElement> driver) {
+	public BasePage(AndroidDriver<MobileElement> driver) {
 		this.driver = driver;
 	}
 
-//	public AppiumDriver<MobileElement> getApiumDriver() {         // Need to find out how it differs from AndroidDriver
+//	public AndroidDriver<MobileElement> getApiumDriver() {         // Need to find out how it differs from AndroidDriver
 //		return driver;
 //	}
 //
@@ -25,7 +25,7 @@ public abstract class BasePage extends MobileClient implements IBasePage {
 //		return (AndroidDriver<MobileElement>) driver;
 //	}
 	
-	public ButtonControl back = new ButtonControl(getAppiumDriver(), By.xpath("//*[contains(@resource-id, 'btnLeftButton')]"));
-	public ButtonControl done = new ButtonControl(getAppiumDriver(), By.xpath("//*[contains(@resource-id, 'btnRightButton')]"));
+	public ButtonControl back = new ButtonControl(getAndroidDriver(), By.xpath("//*[contains(@resource-id, 'btnLeftButton')]"));
+	public ButtonControl done = new ButtonControl(getAndroidDriver(), By.xpath("//*[contains(@resource-id, 'btnRightButton')]"));
 
 }
