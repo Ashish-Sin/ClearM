@@ -110,4 +110,18 @@ public class TestUtil extends MobileClient{
 		ConsoleLog.log("Hide Keyboard");
 		sleep(1000, "Wait till keyboard is hidden");
 	}
+	
+	
+	public static void modificationpermission()
+	{
+		
+		String packageName = driver.getCurrentPackage();
+		String revokeLocationPermission = "adb shell pm revoke " + packageName + " android.permission.RECORD_AUDIO";
+		try {
+			Runtime.getRuntime().exec(revokeLocationPermission);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

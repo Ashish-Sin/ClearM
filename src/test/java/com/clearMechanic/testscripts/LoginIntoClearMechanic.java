@@ -75,16 +75,14 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			inspectionPage.goTo();
 			inspectionPage.vehicleReception.click();
 			ConsoleLog.log("Click on vehicle reception");
-			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on vehicle reception");
 
 			String vinNumber = TestUtil.getExcelData("VIN", 1, 0);
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
 			TestUtil.hideKeyboard(getAndroidDriver());
 
 			inspectionPage.done.click();
+			inspectionPage.done.click();
 			ConsoleLog.log("Click on Done");
-			
-			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Done Button");
 
 			historyPage.goTo();
 			historyPage.verifyRONumberPresent(roNumber);
@@ -103,23 +101,19 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			inspectionPage.goTo();
 			inspectionPage.inspectionItems.click();
 			ConsoleLog.log("Click on inspection items");
-			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on inspection items");
 			inspectionPage.addInspectionItemSearchField.waitForElementClickable();
 			inspectionPage.addInspectionItemSearchField.click();
 			ConsoleLog.log("Click on add inspection item");
-			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on add inspection item");
 			TestUtil.hideKeyboard(getAndroidDriver());
 			inspectionPage.addInspectionItem("\"BAT\" Terminal");
 			ConsoleLog.log("Add BAT Terminal");
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on \"BAT\" Terminal");
 			inspectionPage.firstPhoto.click();
 			ConsoleLog.log("Click on add photo");
-			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on add photo");
 			inspectionPage.addArrow.click();
 
 			Assert.assertTrue(inspectionPage.figure.getMobileElement().isDisplayed());
 			ConsoleLog.log("Verified that photo is visible and arrow is added");
-			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Verified that photo is visible and arrow is added");
 
 		} catch (Exception e) {
 			throw e;
@@ -139,7 +133,6 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			inspectionPage.goTo();
 			inspectionPage.vehicleReception.click();
 			ConsoleLog.log("Click on vehicle reception");
-			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on vehicle reception");
 
 			String vinNumber = TestUtil.getExcelData("VIN", 2, 0);
 			inspectionPage.enterVehicleDetails(roNumber, vinNumber, plates);
@@ -149,7 +142,6 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			ConsoleLog.log("Click on Done");
 			inspectionPage.done.click();
 			ConsoleLog.log("Click on Done");
-			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Done Button");
 
 			historyPage.goTo();
 			historyPage.verifyRONumberPresent(roNumberInvalid);
@@ -158,6 +150,7 @@ public class LoginIntoClearMechanic extends BaseTestCase {
 			throw e;
 		}
 	}
+	
 
 	@AfterMethod
 	public void quitApp() throws Exception {

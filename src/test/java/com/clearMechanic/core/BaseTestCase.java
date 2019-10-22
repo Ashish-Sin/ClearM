@@ -56,7 +56,7 @@ public class BaseTestCase extends MobileClient {
 //	@BeforeTest
 	@Parameters({ "udid", "platform" })
 	public void setUp(String udid, String version) throws Exception {
-		ConsoleLog.log("Launching Application......");
+		ConsoleLog.LOGGER.getGlobal();
 		// setup port
 		if (port == 0)
 			port = Integer.parseInt(FileReader.readData("Port"));
@@ -70,14 +70,7 @@ public class BaseTestCase extends MobileClient {
 			throw new Exception(e);
 		}
 		setAndroidDriver(driver);
-//		String packageName = driver.getCurrentPackage();
-//		String revokeLocationPermission = "adb shell pm revoke " + packageName + " android.permission.RECORD_AUDIO";
-//		try {
-//			Runtime.getRuntime().exec(revokeLocationPermission);
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+
 	}
 
 	public void destroyAppSession() throws Exception {
@@ -265,7 +258,7 @@ public class BaseTestCase extends MobileClient {
 		DateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH-mm-ss");
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
-		String logPath = System.getProperty("user.dir") + "\\Logs\\";
+		String logPath = System.getProperty("user.dir") + "\\ExtentReports\\";
 //			Log.info(driver.getSessionId() + ": Saving device log...");
 		List<LogEntry> logEntries = driver.manage().logs().get("logcat").getAll();
 		File logFile = new File(logPath + reportDate + "_" + testID + ".txt");
@@ -273,9 +266,17 @@ public class BaseTestCase extends MobileClient {
 		PrintWriter log_file_writer = new PrintWriter(logFile);
 		log_file_writer.println(logEntries);
 		Scanner sc = new Scanner(logFile);
-		while (sc.hasNextLine())
-			System.out.println("++++++++++++++++++" + sc.nextLine());
-		ConsoleLog.log("<a href=" + logFile + ">Link to logs</a>");
+		while (sc.hasNextLine()) {
+			String s= sc.nextLine();
+			if(s.contains("beginning of crash")) {
+				ConsoleLog.log("Application crashed " + "<a href=" + "\"" + reportDate + "_" + testID +  ".txt\"" + ">Link to crash logs</a>");
+			} else {
+				ConsoleLog.log("<a href=" + "\"" + reportDate + "_" + testID +  ".txt\"" + ">Link to logs</a>");
+			}	
+			
+			ConsoleLog.log("");
+		}
+		
 		log_file_writer.flush();
 //			Log.info(driver.getSessionId() + ": Saving device log - Done.");
 	}

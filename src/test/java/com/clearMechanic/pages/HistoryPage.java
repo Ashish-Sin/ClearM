@@ -43,7 +43,6 @@ public class HistoryPage extends BasePage{
 		// TODO Auto-generated method stub
 		historyTab.waitForElementClickable();
 		historyTab.click();
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on History Tab");
 		ConsoleLog.log("Go to History tab");
 	}
 }

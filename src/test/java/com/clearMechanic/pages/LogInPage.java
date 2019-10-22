@@ -42,15 +42,12 @@ public class LogInPage extends BasePage {
 	private void enterDetails() throws Exception {
 		dealerName.setText(DEALER_NAME);
 		ConsoleLog.log("Enter Dealer name");
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Dealer name as : " + DEALER_NAME);
 
 		email.setText(EMAIL);
 		ConsoleLog.log("Enter user email");
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter user email address : " + EMAIL);
 
 		password.setText(PASSWORD);
 		ConsoleLog.log("Set password in Login form");
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Set password in Login form");
 	}
 
 	public void logintoApp() throws Exception {

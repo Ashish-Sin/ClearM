@@ -58,7 +58,6 @@ public class InspectionPage extends BasePage {
 	public void goTo() {
 		this.inspectionTab.waitForElementClickable();
 		this.inspectionTab.click();
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Go to Inspection tab");
 		ConsoleLog.log("Go to Inspection tab");
 	}
 	
@@ -88,13 +87,11 @@ public class InspectionPage extends BasePage {
 
 	public void typeVinNumberInVehicleDetails(String fieldValue) {
 		enterValue(typeInVIN, fieldValue);
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter VIN Number" + fieldValue);
 		ConsoleLog.log("Enter VIN Number"+ fieldValue);
 	}
 
 	public void enterPlatesInVehicleDetails(String fieldValue) {
 		enterValue(plates, fieldValue);
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Plate Number" + fieldValue);
 		ConsoleLog.log("Enter Plate Number"+ fieldValue);
 	}
 	
@@ -110,15 +107,12 @@ public class InspectionPage extends BasePage {
 		el1.click();
 		takePhoto.waitForElementClickable();
 		takePhoto.click();
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: click On capture Photo");
 		ConsoleLog.log("click On capture Photo");
 		clickPhoto.click();
 		ok.click();
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: click On Ok button on Photo");
 		ConsoleLog.log(" click On Ok button on Photo");
 		closeCamera.waitForElementClickable();
 		closeCamera.click();
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Close camera");
 		ConsoleLog.log("Close camera");
 	}
 	
